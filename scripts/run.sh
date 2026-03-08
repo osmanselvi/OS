@@ -1,6 +1,6 @@
 #!/bin/bash
 
-QEMU_ARGS='-debugcon stdio -m 32'
+QEMU_ARGS='-m 128 -vga std -display sdl -debugcon stdio'
 
 if [ "$#" -le 1 ]; then
     echo "Usage: ./run.sh <image_type> <image>"
@@ -8,9 +8,9 @@ if [ "$#" -le 1 ]; then
 fi
 
 case "$1" in
-    "floppy")   QEMU_ARGS="${QEMU_ARGS} -fda $2"
+    "floppy")   QEMU_ARGS="${QEMU_ARGS} -drive file=$2,format=raw,if=floppy -boot a"
     ;;
-    "disk")     QEMU_ARGS="${QEMU_ARGS} -hda $2"
+    "disk")     QEMU_ARGS="${QEMU_ARGS} -drive file=$2,format=raw,if=ide"
     ;;
     *)          echo "Unknown image type $1."
                 exit 2

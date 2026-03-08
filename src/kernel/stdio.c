@@ -85,8 +85,13 @@ void vfprintf(fd_t file, const char* fmt, va_list args)
                 break;
 
             case PRINTF_STATE_LENGTH:
+                if (*fmt >= '0' && *fmt <= '9') {
+                    // Skip widths/precision for now
+                    break;
+                }
                 switch (*fmt)
                 {
+                    case '.':   break; // Skip precision dot
                     case 'h':   length = PRINTF_LENGTH_SHORT;
                                 state = PRINTF_STATE_LENGTH_SHORT;
                                 break;

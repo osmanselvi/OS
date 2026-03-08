@@ -66,3 +66,13 @@ void i686_IRQ_RegisterHandler(int irq, IRQHandler handler)
 {
     g_IRQHandlers[irq] = handler;
 }
+
+void i686_IRQ_Unmask(int irq)
+{
+    if (g_Driver) g_Driver->Unmask(irq);
+}
+
+void i686_IRQ_Mask(int irq)
+{
+    if (g_Driver) g_Driver->Mask(irq);
+}

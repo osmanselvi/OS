@@ -1,6 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <stdbool.h>
+#include "vbe.h"
 
 #define ASMCALL __attribute__((cdecl))
 
@@ -41,3 +42,7 @@ enum E820MemoryBlockType
 };
 
 int ASMCALL x86_E820GetNextBlock(E820MemoryBlock* block, uint32_t* continuationId);
+
+bool ASMCALL x86_Video_GetVbeInfo(VbeInfoBlock* infoOut);
+bool ASMCALL x86_Video_GetModeInfo(uint16_t mode, VbeModeInfoBlock* infoOut);
+bool ASMCALL x86_Video_SetMode(uint16_t mode);

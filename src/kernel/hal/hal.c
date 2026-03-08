@@ -4,6 +4,8 @@
 #include <arch/i686/isr.h>
 #include <arch/i686/irq.h>
 #include <arch/i686/vga_text.h>
+#include <drivers/keyboard.h>
+#include <drivers/mouse.h>
 
 void HAL_Initialize()
 {
@@ -12,4 +14,7 @@ void HAL_Initialize()
     i686_IDT_Initialize();
     i686_ISR_Initialize();
     i686_IRQ_Initialize();
+    
+    Keyboard_Initialize();
+    Mouse_Initialize();
 }

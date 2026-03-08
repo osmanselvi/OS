@@ -20,9 +20,9 @@ env.Append(
     ASFLAGS = [ '-I', env.Dir('.').srcnode(), '-f', 'elf' ]
 )
 
-sources = GlobRecursive(env, '*.c') + \
-          GlobRecursive(env, '*.cpp') + \
-          GlobRecursive(env, '*.asm')
+sources = [item for sublist in GlobRecursive(env, '*.c') for item in sublist] + \
+          [item for sublist in GlobRecursive(env, '*.cpp') for item in sublist] + \
+          [item for sublist in GlobRecursive(env, '*.asm') for item in sublist]
 
 objects = env.Object(sources)
 obj_crti = objects.pop(FindIndex(objects, lambda item: IsFileName(item, 'crti.o')))

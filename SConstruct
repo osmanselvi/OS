@@ -86,13 +86,18 @@ HOST_ENVIRONMENT.Replace(ASCOMSTR        = "Assembling [$SOURCE]",
 # ***  Target environment ***
 #
 
-platform_prefix = ''
-if HOST_ENVIRONMENT['arch'] == 'i686':
-    platform_prefix = 'i686-elf-'
+# platform_prefix = ''
+# if HOST_ENVIRONMENT['arch'] == 'i686':
+#    platform_prefix = 'i686-elf-'
+platform_prefix = 'i686-linux-gnu-'
 
-toolchainDir = Path(HOST_ENVIRONMENT['toolchain'], RemoveSuffix(platform_prefix, '-')).resolve()
-toolchainBin = Path(toolchainDir, 'bin')
-toolchainGccLibs = Path(toolchainDir, 'lib', 'gcc', RemoveSuffix(platform_prefix, '-'), DEPS['gcc'])
+# toolchainDir = Path(HOST_ENVIRONMENT['toolchain'], RemoveSuffix(platform_prefix, '-')).resolve()
+# toolchainBin = Path(toolchainDir, 'bin')
+# toolchainGccLibs = Path(toolchainDir, 'lib', 'gcc', RemoveSuffix(platform_prefix, '-'), DEPS['gcc'])
+
+toolchainDir = Path('/usr')
+toolchainBin = Path('/usr/bin')
+toolchainGccLibs = Path('/usr/lib/gcc-cross/i686-linux-gnu/14')
 
 TARGET_ENVIRONMENT = HOST_ENVIRONMENT.Clone(
     AR = f'{platform_prefix}ar',
@@ -117,7 +122,9 @@ TARGET_ENVIRONMENT.Append(
     ],
     CCFLAGS = [
         '-ffreestanding',
-        '-nostdlib'
+        '-nostdlib',
+        '-fno-pic',
+        '-fno-pie'
     ],
     CXXFLAGS = [
         '-fno-exceptions',

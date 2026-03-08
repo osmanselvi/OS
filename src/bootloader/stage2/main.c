@@ -10,6 +10,7 @@
 #include "string.h"
 #include "elf.h"
 #include "memdetect.h"
+#include "vbe.h"
 #include <boot/bootparams.h>
 
 uint8_t* KernelLoadBuffer = (uint8_t*)MEMORY_LOAD_KERNEL;
@@ -43,11 +44,18 @@ void __attribute__((cdecl)) start(uint16_t bootDrive, void* partition)
     g_BootParams.BootDevice = bootDrive;
     Memory_Detect(&g_BootParams.Memory);
 
+    // Initialize VBE
+    if (!VBE_Initialize(&g_BootParams.FrameBuffer, 1024, 768, 32)) {
+        if (!VBE_Initialize(&g_BootParams.FrameBuffer, 800, 600, 32)) {
+             printf("VBE: Failed to initialize graphics!\r\n");
+        }
+    }
+
     // load kernel
     KernelStart kernelEntry;
     if (!ELF_Read(&part, "/boot/kernel.elf", (void**)&kernelEntry))
     {
-        printf("ELF read failed, booting halted!");
+        printf("ELF read failed, booting halted!\r\n");
         goto end;
     }
 

@@ -126,21 +126,24 @@ void i8259_Mask(int irq)
 
 void i8259_Unmask(int irq)
 {
-    i8259_SetMask(g_PicMask & ~(1 << irq));
+    uint16_t mask = g_PicMask & ~(1 << irq);
+    if (irq >= 8)
+        mask &= ~(1 << 2); // Unmask cascade IRQ on PIC1
+    i8259_SetMask(mask);
 }
 
 uint16_t i8259_ReadIrqRequestRegister()
 {
     i686_outb(PIC1_COMMAND_PORT, PIC_CMD_READ_IRR);
     i686_outb(PIC2_COMMAND_PORT, PIC_CMD_READ_IRR);
-    return ((uint16_t)i686_inb(PIC2_COMMAND_PORT)) | (((uint16_t)i686_inb(PIC2_COMMAND_PORT)) << 8);
+    return ((uint16_t)i686_inb(PIC1_COMMAND_PORT)) | (((uint16_t)i686_inb(PIC2_COMMAND_PORT)) << 8);
 }
 
 uint16_t i8259_ReadInServiceRegister()
 {
     i686_outb(PIC1_COMMAND_PORT, PIC_CMD_READ_ISR);
     i686_outb(PIC2_COMMAND_PORT, PIC_CMD_READ_ISR);
-    return ((uint16_t)i686_inb(PIC2_COMMAND_PORT)) | (((uint16_t)i686_inb(PIC2_COMMAND_PORT)) << 8);
+    return ((uint16_t)i686_inb(PIC1_COMMAND_PORT)) | (((uint16_t)i686_inb(PIC2_COMMAND_PORT)) << 8);
 }
 
 bool i8259_Probe()

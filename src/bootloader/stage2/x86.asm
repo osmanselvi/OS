@@ -49,19 +49,17 @@
 
 ; Convert linear address to segment:offset address
 ; Args:
-;    1 - linear address
+;    1 - linear address (memory location or register)
 ;    2 - (out) target segment (e.g. es)
 ;    3 - target 32-bit register to use (e.g. eax)
 ;    4 - target lower 16-bit half of #3 (e.g. ax)
 
 %macro LinearToSegOffset 4
-
-    mov %3, %1      ; linear address to eax
+    mov %3, %1      ; linear address to register
     shr %3, 4
     mov %2, %4
-    mov %3, %1      ; linear address to eax
+    mov %3, %1      ; linear address to register
     and %3, 0xf
-
 %endmacro
 
 
@@ -91,7 +89,6 @@ x86_Disk_GetDriveParams:
     mov ebp, esp         ; initialize new call frame
 
     x86_EnterRealMode
-
     [bits 16]
 
     ; save regs
@@ -101,7 +98,7 @@ x86_Disk_GetDriveParams:
     push di
 
     ; call int13h
-    mov dl, [bp + 8]    ; dl - disk drive
+    mov dl, [ebp + 8]    ; dl - disk drive
     mov ah, 08h
     mov di, 0           ; es:di - 0000:0000
     mov es, di
@@ -113,7 +110,7 @@ x86_Disk_GetDriveParams:
     sbb eax, 0
 
     ; drive type from bl
-    LinearToSegOffset [bp + 12], es, esi, si
+    LinearToSegOffset [ebp + 12], es, esi, si
     mov [es:si], bl
 
     ; cylinders
@@ -122,21 +119,21 @@ x86_Disk_GetDriveParams:
     shr bh, 6
     inc bx
 
-    LinearToSegOffset [bp + 16], es, esi, si
+    LinearToSegOffset [ebp + 16], es, esi, si
     mov [es:si], bx
 
     ; sectors
     xor ch, ch          ; sectors - lower 5 bits in cl
     and cl, 3Fh
     
-    LinearToSegOffset [bp + 20], es, esi, si
+    LinearToSegOffset [ebp + 20], es, esi, si
     mov [es:si], cx
 
     ; heads
     mov cl, dh          ; heads - dh
     inc cx
 
-    LinearToSegOffset [bp + 24], es, esi, si
+    LinearToSegOffset [ebp + 24], es, esi, si
     mov [es:si], cx
 
     ; restore regs
@@ -146,13 +143,9 @@ x86_Disk_GetDriveParams:
     pop es
 
     ; return
-
     push eax
-
     x86_EnterProtectedMode
-
     [bits 32]
-
     pop eax
 
     ; restore old call frame
@@ -169,11 +162,11 @@ x86_Disk_Reset:
     push ebp             ; save old call frame
     mov ebp, esp          ; initialize new call frame
 
-
     x86_EnterRealMode
+    [bits 16]
 
     mov ah, 0
-    mov dl, [bp + 8]    ; dl - drive
+    mov dl, [ebp + 8]    ; dl - drive
     stc
     int 13h
 
@@ -181,9 +174,8 @@ x86_Disk_Reset:
     sbb eax, 0           ; 1 on success, 0 on fail   
 
     push eax
-
     x86_EnterProtectedMode
-
+    [bits 32]
     pop eax
 
     ; restore old call frame
@@ -194,33 +186,34 @@ x86_Disk_Reset:
 
 global x86_Disk_Read
 x86_Disk_Read:
-
+    [bits 32]
     ; make new call frame
     push ebp             ; save old call frame
     mov ebp, esp          ; initialize new call frame
 
     x86_EnterRealMode
+    [bits 16]
 
     ; save modified regs
     push ebx
     push es
 
     ; setup args
-    mov dl, [bp + 8]    ; dl - drive
+    mov dl, [ebp + 8]    ; dl - drive
 
-    mov ch, [bp + 12]    ; ch - cylinder (lower 8 bits)
-    mov cl, [bp + 13]    ; cl - cylinder to bits 6-7
+    mov ch, [ebp + 12]    ; ch - cylinder (lower 8 bits)
+    mov cl, [ebp + 13]    ; cl - cylinder to bits 6-7
     shl cl, 6
     
-    mov al, [bp + 16]    ; cl - sector to bits 0-5
+    mov al, [ebp + 16]    ; cl - sector to bits 0-5
     and al, 3Fh
     or cl, al
 
-    mov dh, [bp + 20]   ; dh - head
+    mov dh, [ebp + 20]   ; dh - head
 
-    mov al, [bp + 24]   ; al - count
+    mov al, [ebp + 24]   ; al - count
 
-    LinearToSegOffset [bp + 28], es, ebx, bx
+    LinearToSegOffset [ebp + 28], es, ebx, bx
 
     ; call int13h
     mov ah, 02h
@@ -236,9 +229,8 @@ x86_Disk_Read:
     pop ebx
 
     push eax
-
     x86_EnterProtectedMode
-
+    [bits 32]
     pop eax
 
     ; restore old call frame
@@ -254,12 +246,13 @@ E820Signature   equ 0x534D4150
 
 global x86_E820GetNextBlock
 x86_E820GetNextBlock:
-
+    [bits 32]
     ; make new call frame
     push ebp             ; save old call frame
     mov ebp, esp          ; initialize new call frame
 
     x86_EnterRealMode
+    [bits 16]
 
     ; save modified regs
     push ebx
@@ -271,9 +264,9 @@ x86_E820GetNextBlock:
     push es
 
     ; setup params
-    LinearToSegOffset [bp + 8], es, edi, di     ; es:di pointer to structure
+    LinearToSegOffset [ebp + 8], es, edi, di     ; es:di pointer to structure
     
-    LinearToSegOffset [bp + 12], ds, esi, si    ; ebx - pointer to continuationId
+    LinearToSegOffset [ebp + 12], ds, esi, si    ; ds:si - pointer to continuationId
     mov ebx, [ds:si]
 
     mov eax, 0xE820                             ; eax - function
@@ -307,12 +300,128 @@ x86_E820GetNextBlock:
     pop ebx
 
     push eax
-
     x86_EnterProtectedMode
-
+    [bits 32]
     pop eax
 
     ; restore old call frame
+    mov esp, ebp
+    pop ebp
+    ret
+
+global x86_Video_GetVbeInfo
+x86_Video_GetVbeInfo:
+    [bits 32]
+    push ebp
+    mov ebp, esp
+
+    x86_EnterRealMode
+    [bits 16]
+
+    push es
+    push di
+
+    LinearToSegOffset [ebp + 8], es, edi, di
+    mov ax, 0x4F00
+    int 0x10
+
+    cmp ax, 0x004F
+    jne .error
+
+    mov eax, 1
+    jmp .done
+
+.error:
+    mov eax, 0
+
+.done:
+    pop di
+    pop es
+
+    push eax
+    x86_EnterProtectedMode
+    [bits 32]
+    pop eax
+
+    mov esp, ebp
+    pop ebp
+    ret
+
+
+global x86_Video_GetModeInfo
+x86_Video_GetModeInfo:
+    [bits 32]
+    push ebp
+    mov ebp, esp
+
+    x86_EnterRealMode
+    [bits 16]
+
+    push es
+    push di
+    push cx
+
+    LinearToSegOffset [ebp + 12], es, edi, di
+    mov cx, [ebp + 8]
+    mov ax, 0x4F01
+    int 0x10
+
+    cmp ax, 0x004F
+    jne .error
+
+    mov eax, 1
+    jmp .done
+
+.error:
+    mov eax, 0
+
+.done:
+    pop cx
+    pop di
+    pop es
+
+    push eax
+    x86_EnterProtectedMode
+    [bits 32]
+    pop eax
+
+    mov esp, ebp
+    pop ebp
+    ret
+
+
+global x86_Video_SetMode
+x86_Video_SetMode:
+    [bits 32]
+    push ebp
+    mov ebp, esp
+
+    x86_EnterRealMode
+    [bits 16]
+
+    push bx
+
+    mov bx, [ebp + 8]
+    mov ax, 0x4F02
+    int 0x10
+
+    cmp ax, 0x004F
+    jne .error
+
+    mov eax, 1
+    jmp .done
+
+.error:
+    mov eax, 0
+
+.done:
+    pop bx
+
+    push eax
+    x86_EnterProtectedMode
+    [bits 32]
+    pop eax
+
     mov esp, ebp
     pop ebp
     ret
