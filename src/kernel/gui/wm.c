@@ -332,7 +332,8 @@ void WM_DrawAll()
     DrawStartMenu();
 
     // Draw cursor on top
-    MouseState ms = Mouse_GetState();
+    MouseState ms;
+    Mouse_GetState(&ms);
     DrawMouseCursor(ms.x, ms.y);
 }
 

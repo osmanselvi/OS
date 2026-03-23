@@ -76,7 +76,8 @@ void kernel_main(BootParams* bootParams)
             if (++loop_count % 100000000 == 0) {
                 log_debug("Main", "Heartbeat. Mouse IRQs: %d", Mouse_GetInterruptCount());
             }
-            MouseState ms = Mouse_GetState();
+            MouseState ms;
+            Mouse_GetState(&ms);
             bool lbtn = ms.leftButton;
             int mx = ms.x, my = ms.y;
 

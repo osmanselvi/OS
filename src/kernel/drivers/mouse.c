@@ -108,15 +108,14 @@ void Mouse_Initialize()
     g_MouseCycle = 0;
 }
 
-MouseState Mouse_GetState()
+void Mouse_GetState(MouseState* state)
 {
-    MouseState state;
-    state.x = g_MouseState.x;
-    state.y = g_MouseState.y;
-    state.leftButton = g_MouseState.leftButton;
-    state.rightButton = g_MouseState.rightButton;
-    state.middleButton = g_MouseState.middleButton;
-    return state;
+    if (!state) return;
+    state->x = g_MouseState.x;
+    state->y = g_MouseState.y;
+    state->leftButton = g_MouseState.leftButton;
+    state->rightButton = g_MouseState.rightButton;
+    state->middleButton = g_MouseState.middleButton;
 }
 
 uint32_t Mouse_GetInterruptCount()
