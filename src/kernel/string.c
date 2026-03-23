@@ -39,3 +39,9 @@ char* strchr(const char* str, int character) {
     if (character == '\0') return (char*)str;
     return NULL;
 }
+void to_upper(char* str) {
+    while (*str) {
+        if (*str >= 'a' && *str <= 'z') *str -= 32;
+        str++;
+    }
+}

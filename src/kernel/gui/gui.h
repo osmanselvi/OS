@@ -46,6 +46,7 @@ typedef struct {
     int  id;
     int  x, y, w, h;
     char title[48];
+    int  type; // 0: Normal, 1: Shell/Terminal
     bool active;
     bool dragging;
     int  drag_ox, drag_oy;
@@ -73,3 +74,4 @@ int  WM_HandleKey(char key);
 #define WM_SNAKE     2
 #define WM_PONG      3
 #define WM_NADIT     4
+#define WM_SHELL     5

@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <apps/shell.h>
 
 #define SCREEN_W    1024
 #define SCREEN_H    768
@@ -86,6 +87,7 @@ void WM_CreateWindow(const char *title, int x, int y, int w, int h)
     win->id = g_WinCount++;
     win->x = x; win->y = y < TASKBAR_H ? TASKBAR_H : y;
     win->w = w; win->h = h;
+    win->type = 0; // Normal
     win->active = true;
     win->dragging = false;
     win->scroll_y = 0; win->max_scroll_y = 0;
@@ -104,6 +106,29 @@ void WM_CreateWindow(const char *title, int x, int y, int w, int h)
     while (default_content[i] && i < 2047) { win->content[i] = default_content[i]; i++; }
     win->content[i] = 0;
 
+    g_FocusedWin = win->id;
+}
+
+void WM_CreateShellWindow(const char *title, int x, int y, int w, int h)
+{
+    if (g_WinCount >= MAX_WINDOWS) return;
+    Window *win = &g_Windows[g_WinCount];
+    win->id = g_WinCount++;
+    win->x = x; win->y = y < TASKBAR_H ? TASKBAR_H : y;
+    win->w = w; win->h = h;
+    win->type = 1; // Shell
+    win->active = true;
+    win->dragging = false;
+    win->content[0] = 0;
+    // title copy
+    int i = 0;
+    while (title[i] && i < 47) { win->title[i] = title[i]; i++; } win->title[i] = 0;
+
+    const char *status_msg = "Hazir";
+    i = 0;
+    while (status_msg[i] && i < 63) { win->status[i] = status_msg[i]; i++; } win->status[i] = 0;
+
+    Shell_Initialize();
     g_FocusedWin = win->id;
 }
 
@@ -159,7 +184,12 @@ static void DrawSingleWindow(Window *win)
     GUI_FillRect(x, y, w, h, COL_NEAR_WHITE);
 
     // Content area
-    GUI_FillRect(x+1, y+TITLEBAR_H, w-2, h-TITLEBAR_H-STATUS_H-2, COL_WHITE);
+    GUI_FillRect(x+1, y+TITLEBAR_H, w-2, h-TITLEBAR_H-STATUS_H-2, (win->type == 1) ? COL_BLACK : COL_WHITE);
+
+    if (win->type == 1) {
+        Shell_Draw(x+1, y+TITLEBAR_H, w-2, h-TITLEBAR_H-STATUS_H-2);
+        return;
+    }
 
     // Content text
     int cx = x + 6, cy = y + TITLEBAR_H + 4;
@@ -334,7 +364,7 @@ int WM_HandleMouse(int mx, int my, bool lbtn)
             int iy = smy + 8 + 20;  // first item: Not Defteri
             if (my >= iy && my < iy+18) { g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_NADIT; } iy += 18;
             if (my >= iy && my < iy+18) { WM_CreateWindow("Dosya Yoneticisi", 200, 120, 400, 300); g_StartMenuOpen=false; WM_DrawAll(); prev_lbtn=lbtn; return WM_CONTINUE; } iy += 18;
-            if (my >= iy && my < iy+18) { /* Terminal noop */ g_StartMenuOpen=false; WM_DrawAll(); prev_lbtn=lbtn; return WM_CONTINUE; } iy += 24; // +24 includes separator gap
+            if (my >= iy && my < iy+18) { WM_CreateShellWindow("Komut Satiri", 150, 100, 640, 420); g_StartMenuOpen=false; WM_DrawAll(); prev_lbtn=lbtn; return WM_CONTINUE; } iy += 24; // +24 includes separator gap
             // OYUNLAR header (+20)
             iy += 20;
             if (my >= iy && my < iy+18) { g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_SNAKE; } iy += 18;
@@ -395,7 +425,11 @@ int WM_HandleMouse(int mx, int my, bool lbtn)
         for (int i = 0; i < g_IconCount; i++) {
             if (mx >= g_Icons[i].x && mx <= g_Icons[i].x+48 &&
                 my >= g_Icons[i].y && my <= g_Icons[i].y+48) {
-                WM_CreateWindow(g_Icons[i].label, 100+i*30, 100+i*20, 400, 280);
+                if (strcmp(g_Icons[i].cmd, "SHELL") == 0) {
+                    WM_CreateShellWindow("Komut Satiri", 150, 100, 640, 420);
+                } else {
+                    WM_CreateWindow(g_Icons[i].label, 100+i*30, 100+i*20, 400, 280);
+                }
                 break;
             }
         }
@@ -410,6 +444,11 @@ int WM_HandleKey(char key)
     if (g_FocusedWin < 0 || g_FocusedWin >= g_WinCount) return 1;
     Window *win = &g_Windows[g_FocusedWin];
     if (!win->active) return 1;
+
+    if (win->type == 1) {
+        Shell_HandleKey(key);
+        return 1;
+    }
 
     uint16_t len = 0;
     while (win->content[len] && len < 2046) len++;

@@ -11,6 +11,7 @@
 #include <apps/snake.h>
 #include <apps/pong.h>
 #include <apps/nadit.h>
+#include <apps/shell.h>
 #include <debug.h>
 #include <boot/bootparams.h>
 #include <stdbool.h>
@@ -42,8 +43,9 @@ void start(BootParams* bootParams)
         // ── Setup / Re-setup Desktop ─────────────────────────────────────────
         WM_Initialize();
         WM_CreateIcon("Not Defteri", "NADIT",  30, 60);
-        WM_CreateIcon("Snake",       "SNAKE",  30, 140);
-        WM_CreateIcon("Pong",        "PONG",   30, 220);
+        WM_CreateIcon("Terminal",     "SHELL",  30, 140);
+        WM_CreateIcon("Snake",        "SNAKE",  30, 220);
+        WM_CreateIcon("Pong",         "PONG",   30, 300);
         WM_DrawAll();
         GUI_SwapBuffers(); // Initial draw commit
 
