@@ -47,8 +47,8 @@ entry:
     mov gs, ax
     mov ss, ax
 
-    ; Setup a robust 32-bit stack (moved from 0xFFF0 to 0x90000)
-    mov esp, 0x90000
+    ; Setup a robust 32-bit stack (0x7FFFF ensures SP=0xFFFF in Real Mode)
+    mov esp, 0x7FFFF
     mov ebp, esp
    
     ; clear bss (uninitialized data)
