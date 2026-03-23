@@ -174,12 +174,11 @@ void Shell_Draw(int x, int y, int w, int h) {
     }
     
     // Input line (current cursor)
-    // Actually the current cursor is already in the buffer if we print properly.
-    // Let's draw the current input buffer on the current line.
     int prompt_len = 12; // "sincan@OS > "
-    char input_disp[MAX_CMD_LEN + 1];
+    char input_disp[MAX_CMD_LEN + 2];
     strcpy(input_disp, g_InputBuffer);
-    // GUI_DrawString(x + 2 + prompt_len * FONT_W, y + 2 + g_CurRow * FONT_H, input_disp, COL_WHITE, COL_BLACK);
+    strcat(input_disp, "_"); // Simple cursor
+    GUI_DrawString(x + 2 + prompt_len * FONT_W, y + 2 + g_CurRow * FONT_H, input_disp, COL_WHITE, COL_BLACK);
 }
 
 void Shell_HandleKey(char key) {

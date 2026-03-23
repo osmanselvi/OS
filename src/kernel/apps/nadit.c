@@ -17,7 +17,7 @@
 #define COL_GUTTER   0x002D2D2D
 #define COL_STATUS   0x00007ACC
 #define COL_STATUS_T 0x00FFFFFF
-#define COL_CURSOR   0x00AEAFAD
+#define COL_CURSOR   COL_YELLOW
 
 typedef struct erow {
     int size;

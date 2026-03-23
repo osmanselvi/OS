@@ -1,6 +1,7 @@
 #include "ide.h"
 #include <hal/hal.h>
 #include <stdio.h>
+#include <debug.h>
 
 #define IDE_DATA        0x1F0
 #define IDE_ERROR       0x1F1
@@ -25,11 +26,11 @@ static void IDE_WaitReady() {
 }
 
 void IDE_Initialize() {
-    // Basic identification or reset could go here. 
-    // For now, we assume Primary Master is present in QEMU.
+    log_debug("IDE", "Initializing Primary Master...");
 }
 
 int IDE_ReadSectors(uint32_t lba, uint8_t count, void* buffer) {
+    log_debug("IDE", "Read LBA %d, count %d", lba, count);
     uint16_t* ptr = (uint16_t*)buffer;
 
     IDE_WaitBusy();
@@ -51,6 +52,7 @@ int IDE_ReadSectors(uint32_t lba, uint8_t count, void* buffer) {
 }
 
 int IDE_WriteSectors(uint32_t lba, uint8_t count, const void* buffer) {
+    log_debug("IDE", "Write LBA %d, count %d", lba, count);
     const uint16_t* ptr = (const uint16_t*)buffer;
 
     IDE_WaitBusy();
@@ -67,7 +69,6 @@ int IDE_WriteSectors(uint32_t lba, uint8_t count, const void* buffer) {
         for (int j = 0; j < 256; j++) {
             i686_outw(IDE_DATA, *ptr++);
         }
-        // Flush/Cache wait if needed, usually PIO WRITE command handles it
     }
     return 0;
 }
