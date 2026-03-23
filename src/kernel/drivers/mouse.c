@@ -5,9 +5,10 @@
 #include <stdbool.h>
 #include <debug.h>
 
-static MouseState g_MouseState = {512, 384, false, false, false};
+static volatile MouseState g_MouseState = {512, 384, false, false, false};
 static uint8_t g_MouseCycle = 0;
 static int8_t g_MousePacket[3];
+static volatile uint32_t g_MouseInterruptCount = 0;
 
 static void Mouse_Wait(uint8_t type)
 {
@@ -35,14 +36,17 @@ static uint8_t Mouse_Read()
 
 static void Mouse_Handler(Registers* regs)
 {
+    g_MouseInterruptCount++;
+    
     uint8_t status = i686_inb(0x64);
-    if (!(status & 0x20)) return; // Not mouse data
+    if (!(status & 0x01)) return; // No data
 
     uint8_t data = i686_inb(0x60);
+    if (!(status & 0x20)) return; // Not mouse data
 
     // Sync check: bit 3 of first byte should be 1
     if (g_MouseCycle == 0 && !(data & 0x08)) {
-        log_warn("Mouse", "Sync lost! Skip 0x%x", (uint32_t)data);
+        // log_warn("Mouse", "Sync lost! Skip 0x%x", (uint32_t)data);
         return;
     }
 
@@ -106,5 +110,16 @@ void Mouse_Initialize()
 
 MouseState Mouse_GetState()
 {
-    return g_MouseState;
+    MouseState state;
+    state.x = g_MouseState.x;
+    state.y = g_MouseState.y;
+    state.leftButton = g_MouseState.leftButton;
+    state.rightButton = g_MouseState.rightButton;
+    state.middleButton = g_MouseState.middleButton;
+    return state;
+}
+
+uint32_t Mouse_GetInterruptCount()
+{
+    return g_MouseInterruptCount;
 }

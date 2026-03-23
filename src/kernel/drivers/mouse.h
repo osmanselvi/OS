@@ -12,3 +12,4 @@ typedef struct {
 
 void Mouse_Initialize();
 MouseState Mouse_GetState();
+uint32_t   Mouse_GetInterruptCount();

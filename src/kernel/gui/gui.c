@@ -29,11 +29,14 @@ void GUI_PutPixel(int x, int y, uint32_t color)
 
 void GUI_FillRect(int x, int y, int w, int h, uint32_t color)
 {
-    if (!g_BackBuffer) return;
+    if (w <= 0 || h <= 0 || !g_BackBuffer) return;
+    
     int x1 = x < 0 ? 0 : x;
     int y1 = y < 0 ? 0 : y;
     int x2 = x + w; if ((uint32_t)x2 > g_W) x2 = (int)g_W;
     int y2 = y + h; if ((uint32_t)y2 > g_H) y2 = (int)g_H;
+
+    if (x2 <= x1 || y2 <= y1) return;
 
     for (int row = y1; row < y2; row++) {
         uint32_t* p = &g_BackBuffer[row * g_W + x1];

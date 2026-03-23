@@ -135,17 +135,12 @@ void WM_CreateShellWindow(const char *title, int x, int y, int w, int h)
 // ─── Draw Helpers ─────────────────────────────────────────────────────────────
 static void DrawDesktopBackground()
 {
-    // Gradient background: top-left teal to bottom-right dark blue
-    for (int y = 0; y < SCREEN_H - TASKBAR_H; y++) {
-        uint32_t r = 0x00 + (0x00 * (SCREEN_H - y) / SCREEN_H);
-        uint32_t g2= 0x55 + (0x33 * (SCREEN_H - y) / SCREEN_H);
-        uint32_t b = 0x88 + (0x33 * y / SCREEN_H);
-        GUI_FillRect(0, TASKBAR_H + y, SCREEN_W, 1, (r<<16)|(g2<<8)|b);
-    }
+    // Solid background (Teal) is much faster than per-row gradients
+    GUI_FillRect(0, TASKBAR_H, SCREEN_W, SCREEN_H - TASKBAR_H, 0x000088AA);
 
     // Watermark bottom-right
-    GUI_DrawString(SCREEN_W - 136, SCREEN_H - 24, "SincanOs v2.0", COL_WHITE, 0xFFFFFFFF);
-    GUI_DrawString(SCREEN_W - 120, SCREEN_H - 8,  "New World", 0x00AADDFF, 0xFFFFFFFF);
+    GUI_DrawString(SCREEN_W - 136, SCREEN_H - 24, "SincanOs v2.0", COL_WHITE, 0x000088AA);
+    GUI_DrawString(SCREEN_W - 120, SCREEN_H - 8,  "New World", 0x00AADDFF, 0x000088AA);
 }
 
 static void DrawIcons()

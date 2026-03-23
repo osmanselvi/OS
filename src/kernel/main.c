@@ -56,7 +56,9 @@ void start(BootParams* bootParams)
         uint32_t loop_count = 0;
 
         while (gui_running == WM_CONTINUE) {
-            if (++loop_count % 10000000 == 0) log_debug("Main", "Loop heartbeat...");
+            if (++loop_count % 100000000 == 0) {
+                log_debug("Main", "Heartbeat. Mouse IRQs: %d", Mouse_GetInterruptCount());
+            }
             MouseState ms = Mouse_GetState();
             bool lbtn = ms.leftButton;
             int mx = ms.x, my = ms.y;

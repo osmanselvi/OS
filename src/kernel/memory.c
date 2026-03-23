@@ -71,9 +71,16 @@ void kfree(void *ptr)
 
 void* memcpy(void* dst, const void* src, size_t num)
 {
-    uint8_t* u8Dst = (uint8_t *)dst;
-    const uint8_t* u8Src = (const uint8_t *)src;
-    for (size_t i = 0; i < num; i++) u8Dst[i] = u8Src[i];
+    uint32_t* d32 = (uint32_t*)dst;
+    const uint32_t* s32 = (const uint32_t*)src;
+    size_t n32 = num / 4;
+    while (n32--) *d32++ = *s32++;
+
+    uint8_t* d8 = (uint8_t*)d32;
+    const uint8_t* s8 = (const uint8_t*)s32;
+    size_t n8 = num % 4;
+    while (n8--) *d8++ = *s8++;
+
     return dst;
 }
 

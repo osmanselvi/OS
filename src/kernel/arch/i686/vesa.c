@@ -63,21 +63,21 @@ void VESA_FillRect(uint32_t x, uint32_t y, uint32_t w, uint32_t h, uint32_t colo
     }
 }
 
+#include <memory.h>
+
 void VESA_Blit(const uint32_t* buffer)
 {
     if (g_FB.Bpp == 32)
     {
         for (uint32_t y = 0; y < g_FB.Height; y++)
         {
-            uint32_t* fbPtr = (uint32_t*)((uint8_t*)g_FB.Address + y * g_FB.Pitch);
-            const uint32_t* srcPtr = &buffer[y * g_FB.Width];
-            for (uint32_t x = 0; x < g_FB.Width; x++) {
-                fbPtr[x] = srcPtr[x];
-            }
+            void* fbPtr = (uint8_t*)g_FB.Address + y * g_FB.Pitch;
+            const void* srcPtr = &buffer[y * g_FB.Width];
+            memcpy(fbPtr, srcPtr, g_FB.Width * 4);
         }
     }
     else if (g_FB.Bpp == 24)
     {
-        // ... bits for 24-bit if needed
+        // ... bits for 24-bit if needed (usually custom packing required)
     }
 }
