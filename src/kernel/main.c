@@ -18,7 +18,23 @@
 
 extern void _init();
 
+uint8_t g_KernelStack[32768];
+
+void kernel_main(BootParams* bootParams);
+
 void start(BootParams* bootParams)
+{
+    __asm__ volatile (
+        "movl %0, %%esp\n"
+        "movl %%esp, %%ebp\n"
+        "pushl %1\n"
+        "call kernel_main\n"
+        : : "g" (&g_KernelStack[32768]), "g" (bootParams) : "memory"
+    );
+    for(;;);
+}
+
+void kernel_main(BootParams* bootParams)
 {   
     _init();
     HAL_Initialize();
