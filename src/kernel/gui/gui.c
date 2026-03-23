@@ -2,6 +2,7 @@
 #include "font.h"
 #include <arch/i686/vesa.h>
 #include <memory.h>
+#include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 
