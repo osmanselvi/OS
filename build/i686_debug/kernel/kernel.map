@@ -23,150 +23,150 @@ Bağlayıcı betiği ve bellek eşlemesi
  .text          0x00100000       0xb2 /usr/lib/gcc-cross/i686-linux-gnu/14/crtbegin.o
  .text          0x001000b2       0x71 build/i686_debug/kernel/debug.o
                 0x001000b2                logf
- .text          0x00100123      0x2eb build/i686_debug/kernel/main.o
+ .text          0x00100123      0x2ea build/i686_debug/kernel/main.o
                 0x00100123                start
-                0x00100137                kernel_main
- .text          0x0010040e      0x28f build/i686_debug/kernel/memory.o
-                0x0010040e                Memory_Initialize
-                0x00100480                kmalloc
-                0x0010053a                kfree
-                0x0010059b                memcpy
-                0x0010061b                memset
-                0x0010064e                memcmp
- .text          0x0010069d      0x65b build/i686_debug/kernel/stdio.o
-                0x0010069d                fputc
-                0x001006c0                fputs
-                0x001006f2                fprintf_unsigned
-                0x00100799                fprintf_signed
-                0x001007f9                vfprintf
-                0x00100b3d                fprintf
-                0x00100b61                fprint_buffer
-                0x00100c06                putc
-                0x00100c27                puts
-                0x00100c40                printf
-                0x00100c63                print_buffer
-                0x00100c7f                debugc
-                0x00100ca0                debugs
-                0x00100cb9                debugf
-                0x00100cdc                debug_buffer
- .text          0x00100cf8      0x19b build/i686_debug/kernel/string.o
-                0x00100cf8                strlen
-                0x00100d1f                strcpy
-                0x00100d4f                strncpy
-                0x00100da2                strcat
-                0x00100de2                strcmp
-                0x00100e21                strchr
-                0x00100e58                to_upper
- .text          0x00100e93      0x814 build/i686_debug/kernel/apps/nadit.o
-                0x00101568                Nadit_Run
- .text          0x001016a7      0x576 build/i686_debug/kernel/apps/pong.o
-                0x0010178e                Pong_Run
- .text          0x00101c1d      0x961 build/i686_debug/kernel/apps/shell.o
-                0x00102380                Shell_Initialize
-                0x001023ae                Shell_Draw
-                0x001024c6                Shell_HandleKey
- .text          0x0010257e      0x8e8 build/i686_debug/kernel/apps/snake.o
-                0x00102776                Snake_Run
- .text          0x00102e66        0x0 build/i686_debug/kernel/gui/font.o
- .text          0x00102e66      0x450 build/i686_debug/kernel/gui/gui.o
-                0x00102e66                GUI_Initialize
-                0x00102ed6                GUI_SwapBuffers
-                0x00102ef9                GUI_PutPixel
-                0x00102f4f                GUI_FillRect
-                0x00103042                GUI_DrawRect
-                0x001030b2                GUI_DrawLine
-                0x00103154                GUI_DrawChar
-                0x0010322d                GUI_DrawString
-                0x0010326f                GUI_DrawStringTransparent
-                0x0010328b                GUI_StringWidth
- .text          0x001032b6     0x18c6 build/i686_debug/kernel/gui/wm.o
-                0x0010355c                WM_Initialize
-                0x001035b8                WM_CreateIcon
-                0x0010368b                WM_CreateWindow
-                0x00103829                WM_CreateShellWindow
-                0x00104430                WM_DrawAll
-                0x001044a0                WM_HandleMouse
-                0x00104a51                WM_HandleKey
- .text          0x00104b7c      0x2ae build/i686_debug/kernel/drivers/ide.o
-                0x00104bc0                IDE_Initialize
-                0x00104be0                IDE_ReadSectors
-                0x00104d05                IDE_WriteSectors
- .text          0x00104e2a      0x12b build/i686_debug/kernel/drivers/keyboard.o
-                0x00104ebd                Keyboard_Initialize
-                0x00104ee5                Keyboard_GetLastChar
-                0x00104f02                Keyboard_GetLastScancode
-                0x00104f1f                Keyboard_SetLayout
- .text          0x00104f55      0x3bd build/i686_debug/kernel/drivers/mouse.o
-                0x0010518b                Mouse_Drain
-                0x001051c0                Mouse_Initialize
-                0x001052b9                Mouse_GetState
-                0x00105308                Mouse_GetInterruptCount
- .text          0x00105312      0x437 build/i686_debug/kernel/fs/fs.o
-                0x00105312                fs_save
-                0x00105335                fs_load
-                0x001053f2                fs_init
-                0x00105400                fs_create_file
-                0x001054e6                fs_find_file
-                0x00105543                fs_write_file
-                0x001055d3                fs_get_content
-                0x0010561e                fs_delete_file
-                0x00105662                fs_rename_file
-                0x001056df                get_file_list_string
- .text          0x00105749       0x31 build/i686_debug/kernel/hal/hal.o
-                0x00105749                HAL_Initialize
- .text          0x0010577a       0xa5 build/i686_debug/kernel/hal/vfs.o
-                0x0010577a                VFS_Write
- .text          0x0010581f       0x27 build/i686_debug/kernel/arch/i686/e9.o
-                0x0010581f                e9_putc
- .text          0x00105846       0x1d build/i686_debug/kernel/arch/i686/gdt.o
-                0x00105846                i686_GDT_Initialize
- .text          0x00105863      0x32a build/i686_debug/kernel/arch/i686/i8259.o
-                0x00105863                i8259_SetMask
-                0x001058be                i8259_GetMask
-                0x001058f2                i8259_Configure
-                0x001059f3                i8259_SendEndOfInterrupt
-                0x00105a23                i8259_Disable
-                0x00105a3c                i8259_Mask
-                0x00105a6d                i8259_Unmask
-                0x00105ab0                i8259_ReadIrqRequestRegister
-                0x00105b05                i8259_ReadInServiceRegister
-                0x00105b5a                i8259_Probe
-                0x00105b83                i8259_GetDriver
- .text          0x00105b8d       0xba build/i686_debug/kernel/arch/i686/idt.o
-                0x00105b8d                i686_IDT_SetGate
-                0x00105bee                i686_IDT_EnableGate
-                0x00105c0e                i686_IDT_DisableGate
-                0x00105c2e                i686_IDT_Initialize
- .text          0x00105c47       0x1b build/i686_debug/kernel/arch/i686/io.o
-                0x00105c47                i686_iowait
- .text          0x00105c62      0x183 build/i686_debug/kernel/arch/i686/irq.o
-                0x00105c62                i686_IRQ_Handler
-                0x00105cc6                i686_IRQ_Initialize
-                0x00105d88                i686_IRQ_RegisterHandler
-                0x00105d9b                i686_IRQ_Unmask
-                0x00105dc0                i686_IRQ_Mask
- .text          0x00105de5      0x1db build/i686_debug/kernel/arch/i686/isr.o
-                0x00105de5                i686_ISR_Initialize
-                0x00105e27                i686_ISR_Handler
-                0x00105f9c                i686_ISR_RegisterHandler
- .text          0x00105fc0     0x1489 build/i686_debug/kernel/arch/i686/isrs_gen.o
-                0x00105fc0                i686_ISR_InitializeGates
- .text          0x00107449      0x2f5 build/i686_debug/kernel/arch/i686/vesa.o
-                0x00107449                VESA_Initialize
-                0x0010747d                VESA_PutPixel
-                0x0010752f                VESA_ClearScreen
-                0x00107557                VESA_FillRect
-                0x001076cd                VESA_Blit
- .text          0x0010773e      0x3a5 build/i686_debug/kernel/arch/i686/vga_text.o
-                0x0010773e                VGA_putchr
-                0x0010776d                VGA_putcolor
-                0x0010779f                VGA_getchr
-                0x001077c1                VGA_getcolor
-                0x001077e6                VGA_setcursor
-                0x00107857                VGA_clrscr
-                0x001078e5                VGA_scrollback
-                0x001079d3                VGA_putc
- *fill*         0x00107ae3        0xd 
+                0x00100136                kernel_main
+ .text          0x0010040d      0x28f build/i686_debug/kernel/memory.o
+                0x0010040d                Memory_Initialize
+                0x0010047f                kmalloc
+                0x00100539                kfree
+                0x0010059a                memcpy
+                0x0010061a                memset
+                0x0010064d                memcmp
+ .text          0x0010069c      0x65b build/i686_debug/kernel/stdio.o
+                0x0010069c                fputc
+                0x001006bf                fputs
+                0x001006f1                fprintf_unsigned
+                0x00100798                fprintf_signed
+                0x001007f8                vfprintf
+                0x00100b3c                fprintf
+                0x00100b60                fprint_buffer
+                0x00100c05                putc
+                0x00100c26                puts
+                0x00100c3f                printf
+                0x00100c62                print_buffer
+                0x00100c7e                debugc
+                0x00100c9f                debugs
+                0x00100cb8                debugf
+                0x00100cdb                debug_buffer
+ .text          0x00100cf7      0x19b build/i686_debug/kernel/string.o
+                0x00100cf7                strlen
+                0x00100d1e                strcpy
+                0x00100d4e                strncpy
+                0x00100da1                strcat
+                0x00100de1                strcmp
+                0x00100e20                strchr
+                0x00100e57                to_upper
+ .text          0x00100e92      0x814 build/i686_debug/kernel/apps/nadit.o
+                0x00101567                Nadit_Run
+ .text          0x001016a6      0x576 build/i686_debug/kernel/apps/pong.o
+                0x0010178d                Pong_Run
+ .text          0x00101c1c      0x961 build/i686_debug/kernel/apps/shell.o
+                0x0010237f                Shell_Initialize
+                0x001023ad                Shell_Draw
+                0x001024c5                Shell_HandleKey
+ .text          0x0010257d      0x8e8 build/i686_debug/kernel/apps/snake.o
+                0x00102775                Snake_Run
+ .text          0x00102e65        0x0 build/i686_debug/kernel/gui/font.o
+ .text          0x00102e65      0x450 build/i686_debug/kernel/gui/gui.o
+                0x00102e65                GUI_Initialize
+                0x00102ed5                GUI_SwapBuffers
+                0x00102ef8                GUI_PutPixel
+                0x00102f4e                GUI_FillRect
+                0x00103041                GUI_DrawRect
+                0x001030b1                GUI_DrawLine
+                0x00103153                GUI_DrawChar
+                0x0010322c                GUI_DrawString
+                0x0010326e                GUI_DrawStringTransparent
+                0x0010328a                GUI_StringWidth
+ .text          0x001032b5     0x18c6 build/i686_debug/kernel/gui/wm.o
+                0x0010355b                WM_Initialize
+                0x001035b7                WM_CreateIcon
+                0x0010368a                WM_CreateWindow
+                0x00103828                WM_CreateShellWindow
+                0x0010442f                WM_DrawAll
+                0x0010449f                WM_HandleMouse
+                0x00104a50                WM_HandleKey
+ .text          0x00104b7b      0x2ae build/i686_debug/kernel/drivers/ide.o
+                0x00104bbf                IDE_Initialize
+                0x00104bdf                IDE_ReadSectors
+                0x00104d04                IDE_WriteSectors
+ .text          0x00104e29      0x12b build/i686_debug/kernel/drivers/keyboard.o
+                0x00104ebc                Keyboard_Initialize
+                0x00104ee4                Keyboard_GetLastChar
+                0x00104f01                Keyboard_GetLastScancode
+                0x00104f1e                Keyboard_SetLayout
+ .text          0x00104f54      0x3bd build/i686_debug/kernel/drivers/mouse.o
+                0x0010518a                Mouse_Drain
+                0x001051bf                Mouse_Initialize
+                0x001052b8                Mouse_GetState
+                0x00105307                Mouse_GetInterruptCount
+ .text          0x00105311      0x437 build/i686_debug/kernel/fs/fs.o
+                0x00105311                fs_save
+                0x00105334                fs_load
+                0x001053f1                fs_init
+                0x001053ff                fs_create_file
+                0x001054e5                fs_find_file
+                0x00105542                fs_write_file
+                0x001055d2                fs_get_content
+                0x0010561d                fs_delete_file
+                0x00105661                fs_rename_file
+                0x001056de                get_file_list_string
+ .text          0x00105748       0x31 build/i686_debug/kernel/hal/hal.o
+                0x00105748                HAL_Initialize
+ .text          0x00105779       0xa5 build/i686_debug/kernel/hal/vfs.o
+                0x00105779                VFS_Write
+ .text          0x0010581e       0x27 build/i686_debug/kernel/arch/i686/e9.o
+                0x0010581e                e9_putc
+ .text          0x00105845       0x1d build/i686_debug/kernel/arch/i686/gdt.o
+                0x00105845                i686_GDT_Initialize
+ .text          0x00105862      0x32a build/i686_debug/kernel/arch/i686/i8259.o
+                0x00105862                i8259_SetMask
+                0x001058bd                i8259_GetMask
+                0x001058f1                i8259_Configure
+                0x001059f2                i8259_SendEndOfInterrupt
+                0x00105a22                i8259_Disable
+                0x00105a3b                i8259_Mask
+                0x00105a6c                i8259_Unmask
+                0x00105aaf                i8259_ReadIrqRequestRegister
+                0x00105b04                i8259_ReadInServiceRegister
+                0x00105b59                i8259_Probe
+                0x00105b82                i8259_GetDriver
+ .text          0x00105b8c       0xba build/i686_debug/kernel/arch/i686/idt.o
+                0x00105b8c                i686_IDT_SetGate
+                0x00105bed                i686_IDT_EnableGate
+                0x00105c0d                i686_IDT_DisableGate
+                0x00105c2d                i686_IDT_Initialize
+ .text          0x00105c46       0x1b build/i686_debug/kernel/arch/i686/io.o
+                0x00105c46                i686_iowait
+ .text          0x00105c61      0x183 build/i686_debug/kernel/arch/i686/irq.o
+                0x00105c61                i686_IRQ_Handler
+                0x00105cc5                i686_IRQ_Initialize
+                0x00105d87                i686_IRQ_RegisterHandler
+                0x00105d9a                i686_IRQ_Unmask
+                0x00105dbf                i686_IRQ_Mask
+ .text          0x00105de4      0x1db build/i686_debug/kernel/arch/i686/isr.o
+                0x00105de4                i686_ISR_Initialize
+                0x00105e26                i686_ISR_Handler
+                0x00105f9b                i686_ISR_RegisterHandler
+ .text          0x00105fbf     0x1489 build/i686_debug/kernel/arch/i686/isrs_gen.o
+                0x00105fbf                i686_ISR_InitializeGates
+ .text          0x00107448      0x2f5 build/i686_debug/kernel/arch/i686/vesa.o
+                0x00107448                VESA_Initialize
+                0x0010747c                VESA_PutPixel
+                0x0010752e                VESA_ClearScreen
+                0x00107556                VESA_FillRect
+                0x001076cc                VESA_Blit
+ .text          0x0010773d      0x3a5 build/i686_debug/kernel/arch/i686/vga_text.o
+                0x0010773d                VGA_putchr
+                0x0010776c                VGA_putcolor
+                0x0010779e                VGA_getchr
+                0x001077c0                VGA_getcolor
+                0x001077e5                VGA_setcursor
+                0x00107856                VGA_clrscr
+                0x001078e4                VGA_scrollback
+                0x001079d2                VGA_putc
+ *fill*         0x00107ae2        0xe 
  .text          0x00107af0       0x25 build/i686_debug/kernel/arch/i686/gdt_asm.o
                 0x00107af0                i686_GDT_Load
  *fill*         0x00107b15        0xb 
@@ -598,109 +598,109 @@ Bağlayıcı betiği ve bellek eşlemesi
  .eh_frame      0x0010a808        0x0 build/i686_debug/kernel/crti.o
  .eh_frame      0x0010a808        0x0 build/i686_debug/kernel/crti.o
 
-.eh_frame       0x0010a808     0x1670
+.eh_frame       0x0010a808     0x1668
  .eh_frame      0x0010a808       0x38 build/i686_debug/kernel/debug.o
- .eh_frame      0x0010a840       0x50 build/i686_debug/kernel/main.o
- .eh_frame      0x0010a890       0xd8 build/i686_debug/kernel/memory.o
- .eh_frame      0x0010a968      0x1fc build/i686_debug/kernel/stdio.o
- .eh_frame      0x0010ab64       0xf8 build/i686_debug/kernel/string.o
- .eh_frame      0x0010ac5c       0xfc build/i686_debug/kernel/apps/nadit.o
- .eh_frame      0x0010ad58       0x58 build/i686_debug/kernel/apps/pong.o
- .eh_frame      0x0010adb0      0x11c build/i686_debug/kernel/apps/shell.o
- .eh_frame      0x0010aecc       0x9c build/i686_debug/kernel/apps/snake.o
- .eh_frame      0x0010af68      0x15c build/i686_debug/kernel/gui/gui.o
- .eh_frame      0x0010b0c4      0x228 build/i686_debug/kernel/gui/wm.o
- .eh_frame      0x0010b2ec       0xbc build/i686_debug/kernel/drivers/ide.o
- .eh_frame      0x0010b3a8       0xb8 build/i686_debug/kernel/drivers/keyboard.o
- .eh_frame      0x0010b460      0x118 build/i686_debug/kernel/drivers/mouse.o
- .eh_frame      0x0010b578      0x158 build/i686_debug/kernel/fs/fs.o
- .eh_frame      0x0010b6d0       0x38 build/i686_debug/kernel/hal/hal.o
- .eh_frame      0x0010b708       0x38 build/i686_debug/kernel/hal/vfs.o
- .eh_frame      0x0010b740       0x38 build/i686_debug/kernel/arch/i686/e9.o
- .eh_frame      0x0010b778       0x38 build/i686_debug/kernel/arch/i686/gdt.o
- .eh_frame      0x0010b7b0      0x184 build/i686_debug/kernel/arch/i686/i8259.o
- .eh_frame      0x0010b934       0x98 build/i686_debug/kernel/arch/i686/idt.o
- .eh_frame      0x0010b9cc       0x38 build/i686_debug/kernel/arch/i686/io.o
- .eh_frame      0x0010ba04       0xb8 build/i686_debug/kernel/arch/i686/irq.o
- .eh_frame      0x0010babc       0x88 build/i686_debug/kernel/arch/i686/isr.o
- .eh_frame      0x0010bb44       0x38 build/i686_debug/kernel/arch/i686/isrs_gen.o
- .eh_frame      0x0010bb7c       0xc0 build/i686_debug/kernel/arch/i686/vesa.o
- .eh_frame      0x0010bc3c      0x118 build/i686_debug/kernel/arch/i686/vga_text.o
- .eh_frame      0x0010bd54        0x4 /usr/lib/gcc-cross/i686-linux-gnu/14/crtend.o
- .eh_frame      0x0010bd58       0x84 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_udivdi3.o)
- .eh_frame      0x0010bddc       0x9c /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_umoddi3.o)
+ .eh_frame      0x0010a840       0x48 build/i686_debug/kernel/main.o
+ .eh_frame      0x0010a888       0xd8 build/i686_debug/kernel/memory.o
+ .eh_frame      0x0010a960      0x1fc build/i686_debug/kernel/stdio.o
+ .eh_frame      0x0010ab5c       0xf8 build/i686_debug/kernel/string.o
+ .eh_frame      0x0010ac54       0xfc build/i686_debug/kernel/apps/nadit.o
+ .eh_frame      0x0010ad50       0x58 build/i686_debug/kernel/apps/pong.o
+ .eh_frame      0x0010ada8      0x11c build/i686_debug/kernel/apps/shell.o
+ .eh_frame      0x0010aec4       0x9c build/i686_debug/kernel/apps/snake.o
+ .eh_frame      0x0010af60      0x15c build/i686_debug/kernel/gui/gui.o
+ .eh_frame      0x0010b0bc      0x228 build/i686_debug/kernel/gui/wm.o
+ .eh_frame      0x0010b2e4       0xbc build/i686_debug/kernel/drivers/ide.o
+ .eh_frame      0x0010b3a0       0xb8 build/i686_debug/kernel/drivers/keyboard.o
+ .eh_frame      0x0010b458      0x118 build/i686_debug/kernel/drivers/mouse.o
+ .eh_frame      0x0010b570      0x158 build/i686_debug/kernel/fs/fs.o
+ .eh_frame      0x0010b6c8       0x38 build/i686_debug/kernel/hal/hal.o
+ .eh_frame      0x0010b700       0x38 build/i686_debug/kernel/hal/vfs.o
+ .eh_frame      0x0010b738       0x38 build/i686_debug/kernel/arch/i686/e9.o
+ .eh_frame      0x0010b770       0x38 build/i686_debug/kernel/arch/i686/gdt.o
+ .eh_frame      0x0010b7a8      0x184 build/i686_debug/kernel/arch/i686/i8259.o
+ .eh_frame      0x0010b92c       0x98 build/i686_debug/kernel/arch/i686/idt.o
+ .eh_frame      0x0010b9c4       0x38 build/i686_debug/kernel/arch/i686/io.o
+ .eh_frame      0x0010b9fc       0xb8 build/i686_debug/kernel/arch/i686/irq.o
+ .eh_frame      0x0010bab4       0x88 build/i686_debug/kernel/arch/i686/isr.o
+ .eh_frame      0x0010bb3c       0x38 build/i686_debug/kernel/arch/i686/isrs_gen.o
+ .eh_frame      0x0010bb74       0xc0 build/i686_debug/kernel/arch/i686/vesa.o
+ .eh_frame      0x0010bc34      0x118 build/i686_debug/kernel/arch/i686/vga_text.o
+ .eh_frame      0x0010bd4c        0x4 /usr/lib/gcc-cross/i686-linux-gnu/14/crtend.o
+ .eh_frame      0x0010bd50       0x84 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_udivdi3.o)
+ .eh_frame      0x0010bdd4       0x9c /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_umoddi3.o)
 
-.eh_frame_hdr   0x0010be78        0x0
- .eh_frame_hdr  0x0010be78        0x0 build/i686_debug/kernel/debug.o
+.eh_frame_hdr   0x0010be70        0x0
+ .eh_frame_hdr  0x0010be70        0x0 build/i686_debug/kernel/debug.o
 
-.rel.dyn        0x0010be78     0x1b80
- .rel.plt       0x0010be78        0x0 build/i686_debug/kernel/crti.o
- .rel.got       0x0010be78        0x0 build/i686_debug/kernel/crti.o
- .rel.bss       0x0010be78        0x0 build/i686_debug/kernel/crti.o
+.rel.dyn        0x0010be70     0x1b80
+ .rel.plt       0x0010be70        0x0 build/i686_debug/kernel/crti.o
+ .rel.got       0x0010be70        0x0 build/i686_debug/kernel/crti.o
+ .rel.bss       0x0010be70        0x0 build/i686_debug/kernel/crti.o
  .rel.data.rel.ro
-                0x0010be78        0x0 build/i686_debug/kernel/crti.o
- .rel.ifunc     0x0010be78        0x0 build/i686_debug/kernel/crti.o
- .rel.text      0x0010be78     0x18b8 build/i686_debug/kernel/crti.o
+                0x0010be70        0x0 build/i686_debug/kernel/crti.o
+ .rel.ifunc     0x0010be70        0x0 build/i686_debug/kernel/crti.o
+ .rel.text      0x0010be70     0x18b8 build/i686_debug/kernel/crti.o
  .rel.fini_array
-                0x0010d730        0x8 build/i686_debug/kernel/crti.o
+                0x0010d728        0x8 build/i686_debug/kernel/crti.o
  .rel.init_array
-                0x0010d738        0x8 build/i686_debug/kernel/crti.o
- .rel.rodata    0x0010d740      0x298 build/i686_debug/kernel/crti.o
- .rel.data      0x0010d9d8       0x20 build/i686_debug/kernel/crti.o
+                0x0010d730        0x8 build/i686_debug/kernel/crti.o
+ .rel.rodata    0x0010d738      0x298 build/i686_debug/kernel/crti.o
+ .rel.data      0x0010d9d0       0x20 build/i686_debug/kernel/crti.o
 
-.bss            0x0010da00    0x1f3fc
+.bss            0x0010da00    0x1f3dc
                 0x0010da00                        __bss_start = .
  *(.bss)
  .bss           0x0010da00        0x1 /usr/lib/gcc-cross/i686-linux-gnu/14/crtbegin.o
  .bss           0x0010da01        0x0 build/i686_debug/kernel/debug.o
- *fill*         0x0010da01       0x1f 
- .bss           0x0010da20     0x8000 build/i686_debug/kernel/main.o
-                0x0010da20                g_KernelStack
- .bss           0x00115a20        0x8 build/i686_debug/kernel/memory.o
- .bss           0x00115a28        0x0 build/i686_debug/kernel/stdio.o
- .bss           0x00115a28        0x0 build/i686_debug/kernel/string.o
- *fill*         0x00115a28       0x18 
- .bss           0x00115a40       0x88 build/i686_debug/kernel/apps/nadit.o
-                0x00115a40                E
- .bss           0x00115ac8        0x0 build/i686_debug/kernel/apps/pong.o
- *fill*         0x00115ac8       0x18 
- .bss           0x00115ae0      0x8e4 build/i686_debug/kernel/apps/shell.o
- .bss           0x001163c4        0x0 build/i686_debug/kernel/apps/snake.o
- .bss           0x001163c4        0x0 build/i686_debug/kernel/gui/font.o
- .bss           0x001163c4        0xc build/i686_debug/kernel/gui/gui.o
- *fill*         0x001163d0       0x10 
- .bss           0x001163e0     0x57f1 build/i686_debug/kernel/gui/wm.o
- .bss           0x0011bbd1        0x0 build/i686_debug/kernel/drivers/ide.o
- .bss           0x0011bbd1        0x3 build/i686_debug/kernel/drivers/keyboard.o
- .bss           0x0011bbd4        0x8 build/i686_debug/kernel/drivers/mouse.o
- *fill*         0x0011bbdc        0x4 
- .bss           0x0011bbe0    0x10580 build/i686_debug/kernel/fs/fs.o
- .bss           0x0012c160        0x0 build/i686_debug/kernel/hal/hal.o
- .bss           0x0012c160        0x0 build/i686_debug/kernel/hal/vfs.o
- .bss           0x0012c160        0x0 build/i686_debug/kernel/arch/i686/e9.o
- .bss           0x0012c160        0x0 build/i686_debug/kernel/arch/i686/gdt.o
- .bss           0x0012c160        0xd build/i686_debug/kernel/arch/i686/i8259.o
-                0x0012c160                PIC_ICW1
-                0x0012c164                PIC_ICW4
-                0x0012c168                PIC_CMD
- *fill*         0x0012c16d       0x13 
- .bss           0x0012c180      0x800 build/i686_debug/kernel/arch/i686/idt.o
-                0x0012c180                g_IDT
- .bss           0x0012c980        0x0 build/i686_debug/kernel/arch/i686/io.o
- .bss           0x0012c980       0x44 build/i686_debug/kernel/arch/i686/irq.o
-                0x0012c980                g_IRQHandlers
- *fill*         0x0012c9c4       0x1c 
- .bss           0x0012c9e0      0x400 build/i686_debug/kernel/arch/i686/isr.o
-                0x0012c9e0                g_ISRHandlers
- .bss           0x0012cde0        0x0 build/i686_debug/kernel/arch/i686/isrs_gen.o
- .bss           0x0012cde0       0x14 build/i686_debug/kernel/arch/i686/vesa.o
- .bss           0x0012cdf4        0x8 build/i686_debug/kernel/arch/i686/vga_text.o
-                0x0012cdf4                g_ScreenX
-                0x0012cdf8                g_ScreenY
- .bss           0x0012cdfc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/crtend.o
- .bss           0x0012cdfc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_udivdi3.o)
- .bss           0x0012cdfc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_umoddi3.o)
-                0x0012cdfc                        __end = .
+ *fill*         0x0010da01        0xf 
+ .bss           0x0010da10     0x8000 build/i686_debug/kernel/main.o
+                0x0010da10                g_KernelStack
+ .bss           0x00115a10        0x8 build/i686_debug/kernel/memory.o
+ .bss           0x00115a18        0x0 build/i686_debug/kernel/stdio.o
+ .bss           0x00115a18        0x0 build/i686_debug/kernel/string.o
+ *fill*         0x00115a18        0x8 
+ .bss           0x00115a20       0x88 build/i686_debug/kernel/apps/nadit.o
+                0x00115a20                E
+ .bss           0x00115aa8        0x0 build/i686_debug/kernel/apps/pong.o
+ *fill*         0x00115aa8       0x18 
+ .bss           0x00115ac0      0x8e4 build/i686_debug/kernel/apps/shell.o
+ .bss           0x001163a4        0x0 build/i686_debug/kernel/apps/snake.o
+ .bss           0x001163a4        0x0 build/i686_debug/kernel/gui/font.o
+ .bss           0x001163a4        0xc build/i686_debug/kernel/gui/gui.o
+ *fill*         0x001163b0       0x10 
+ .bss           0x001163c0     0x57f1 build/i686_debug/kernel/gui/wm.o
+ .bss           0x0011bbb1        0x0 build/i686_debug/kernel/drivers/ide.o
+ .bss           0x0011bbb1        0x3 build/i686_debug/kernel/drivers/keyboard.o
+ .bss           0x0011bbb4        0x8 build/i686_debug/kernel/drivers/mouse.o
+ *fill*         0x0011bbbc        0x4 
+ .bss           0x0011bbc0    0x10580 build/i686_debug/kernel/fs/fs.o
+ .bss           0x0012c140        0x0 build/i686_debug/kernel/hal/hal.o
+ .bss           0x0012c140        0x0 build/i686_debug/kernel/hal/vfs.o
+ .bss           0x0012c140        0x0 build/i686_debug/kernel/arch/i686/e9.o
+ .bss           0x0012c140        0x0 build/i686_debug/kernel/arch/i686/gdt.o
+ .bss           0x0012c140        0xd build/i686_debug/kernel/arch/i686/i8259.o
+                0x0012c140                PIC_ICW1
+                0x0012c144                PIC_ICW4
+                0x0012c148                PIC_CMD
+ *fill*         0x0012c14d       0x13 
+ .bss           0x0012c160      0x800 build/i686_debug/kernel/arch/i686/idt.o
+                0x0012c160                g_IDT
+ .bss           0x0012c960        0x0 build/i686_debug/kernel/arch/i686/io.o
+ .bss           0x0012c960       0x44 build/i686_debug/kernel/arch/i686/irq.o
+                0x0012c960                g_IRQHandlers
+ *fill*         0x0012c9a4       0x1c 
+ .bss           0x0012c9c0      0x400 build/i686_debug/kernel/arch/i686/isr.o
+                0x0012c9c0                g_ISRHandlers
+ .bss           0x0012cdc0        0x0 build/i686_debug/kernel/arch/i686/isrs_gen.o
+ .bss           0x0012cdc0       0x14 build/i686_debug/kernel/arch/i686/vesa.o
+ .bss           0x0012cdd4        0x8 build/i686_debug/kernel/arch/i686/vga_text.o
+                0x0012cdd4                g_ScreenX
+                0x0012cdd8                g_ScreenY
+ .bss           0x0012cddc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/crtend.o
+ .bss           0x0012cddc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_udivdi3.o)
+ .bss           0x0012cddc        0x0 /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a(_umoddi3.o)
+                0x0012cddc                        __end = .
 LOAD build/i686_debug/kernel/crti.o
 LOAD /usr/lib/gcc-cross/i686-linux-gnu/14/crtbegin.o
 LOAD build/i686_debug/kernel/debug.o
@@ -741,8 +741,8 @@ LOAD build/i686_debug/kernel/crtn.o
 LOAD /usr/lib/gcc-cross/i686-linux-gnu/14/libgcc.a
 OUTPUT(build/i686_debug/kernel/kernel.elf elf32-i386)
 
-.dynbss         0x0012cdfc        0x0
- .dynbss        0x0012cdfc        0x0 build/i686_debug/kernel/crti.o
+.dynbss         0x0012cddc        0x0
+ .dynbss        0x0012cddc        0x0 build/i686_debug/kernel/crti.o
 
 .debug_aranges  0x00000000      0x3f8
  .debug_aranges
@@ -829,113 +829,113 @@ OUTPUT(build/i686_debug/kernel/kernel.elf elf32-i386)
  .debug_pubnames
                 0x00000000        0x0 build/i686_debug/kernel/crtn.o
 
-.debug_info     0x00000000     0x6ae8
+.debug_info     0x00000000     0x6ae9
  .debug_info    0x00000000        0x0 build/i686_debug/kernel/crti.o
  .debug_info    0x00000000      0x1c0 build/i686_debug/kernel/debug.o
- .debug_info    0x000001c0      0x4fa build/i686_debug/kernel/main.o
- .debug_info    0x000006ba      0x360 build/i686_debug/kernel/memory.o
- .debug_info    0x00000a1a      0x509 build/i686_debug/kernel/stdio.o
- .debug_info    0x00000f23      0x1fa build/i686_debug/kernel/string.o
- .debug_info    0x0000111d      0x5de build/i686_debug/kernel/apps/nadit.o
- .debug_info    0x000016fb      0x318 build/i686_debug/kernel/apps/pong.o
- .debug_info    0x00001a13      0x556 build/i686_debug/kernel/apps/shell.o
- .debug_info    0x00001f69      0x477 build/i686_debug/kernel/apps/snake.o
- .debug_info    0x000023e0       0x90 build/i686_debug/kernel/gui/font.o
- .debug_info    0x00002470      0x536 build/i686_debug/kernel/gui/gui.o
- .debug_info    0x000029a6      0xbf9 build/i686_debug/kernel/gui/wm.o
- .debug_info    0x0000359f      0x28c build/i686_debug/kernel/drivers/ide.o
- .debug_info    0x0000382b      0x345 build/i686_debug/kernel/drivers/keyboard.o
- .debug_info    0x00003b70      0x40c build/i686_debug/kernel/drivers/mouse.o
- .debug_info    0x00003f7c      0x3f5 build/i686_debug/kernel/fs/fs.o
- .debug_info    0x00004371       0xe0 build/i686_debug/kernel/hal/hal.o
- .debug_info    0x00004451      0x129 build/i686_debug/kernel/hal/vfs.o
- .debug_info    0x0000457a       0xb7 build/i686_debug/kernel/arch/i686/e9.o
- .debug_info    0x00004631      0x1ec build/i686_debug/kernel/arch/i686/gdt.o
- .debug_info    0x0000481d      0x3bd build/i686_debug/kernel/arch/i686/i8259.o
- .debug_info    0x00004bda      0x240 build/i686_debug/kernel/arch/i686/idt.o
- .debug_info    0x00004e1a       0x9e build/i686_debug/kernel/arch/i686/io.o
- .debug_info    0x00004eb8      0x428 build/i686_debug/kernel/arch/i686/irq.o
- .debug_info    0x000052e0      0x2ea build/i686_debug/kernel/arch/i686/isr.o
- .debug_info    0x000055ca      0xcfb build/i686_debug/kernel/arch/i686/isrs_gen.o
- .debug_info    0x000062c5      0x338 build/i686_debug/kernel/arch/i686/vesa.o
- .debug_info    0x000065fd      0x31c build/i686_debug/kernel/arch/i686/vga_text.o
- .debug_info    0x00006919       0x74 build/i686_debug/kernel/arch/i686/gdt_asm.o
- .debug_info    0x0000698d       0x74 build/i686_debug/kernel/arch/i686/idt_asm.o
- .debug_info    0x00006a01       0x73 build/i686_debug/kernel/arch/i686/io_asm.o
- .debug_info    0x00006a74       0x74 build/i686_debug/kernel/arch/i686/isr_asm.o
- .debug_info    0x00006ae8        0x0 build/i686_debug/kernel/crtn.o
+ .debug_info    0x000001c0      0x4fb build/i686_debug/kernel/main.o
+ .debug_info    0x000006bb      0x360 build/i686_debug/kernel/memory.o
+ .debug_info    0x00000a1b      0x509 build/i686_debug/kernel/stdio.o
+ .debug_info    0x00000f24      0x1fa build/i686_debug/kernel/string.o
+ .debug_info    0x0000111e      0x5de build/i686_debug/kernel/apps/nadit.o
+ .debug_info    0x000016fc      0x318 build/i686_debug/kernel/apps/pong.o
+ .debug_info    0x00001a14      0x556 build/i686_debug/kernel/apps/shell.o
+ .debug_info    0x00001f6a      0x477 build/i686_debug/kernel/apps/snake.o
+ .debug_info    0x000023e1       0x90 build/i686_debug/kernel/gui/font.o
+ .debug_info    0x00002471      0x536 build/i686_debug/kernel/gui/gui.o
+ .debug_info    0x000029a7      0xbf9 build/i686_debug/kernel/gui/wm.o
+ .debug_info    0x000035a0      0x28c build/i686_debug/kernel/drivers/ide.o
+ .debug_info    0x0000382c      0x345 build/i686_debug/kernel/drivers/keyboard.o
+ .debug_info    0x00003b71      0x40c build/i686_debug/kernel/drivers/mouse.o
+ .debug_info    0x00003f7d      0x3f5 build/i686_debug/kernel/fs/fs.o
+ .debug_info    0x00004372       0xe0 build/i686_debug/kernel/hal/hal.o
+ .debug_info    0x00004452      0x129 build/i686_debug/kernel/hal/vfs.o
+ .debug_info    0x0000457b       0xb7 build/i686_debug/kernel/arch/i686/e9.o
+ .debug_info    0x00004632      0x1ec build/i686_debug/kernel/arch/i686/gdt.o
+ .debug_info    0x0000481e      0x3bd build/i686_debug/kernel/arch/i686/i8259.o
+ .debug_info    0x00004bdb      0x240 build/i686_debug/kernel/arch/i686/idt.o
+ .debug_info    0x00004e1b       0x9e build/i686_debug/kernel/arch/i686/io.o
+ .debug_info    0x00004eb9      0x428 build/i686_debug/kernel/arch/i686/irq.o
+ .debug_info    0x000052e1      0x2ea build/i686_debug/kernel/arch/i686/isr.o
+ .debug_info    0x000055cb      0xcfb build/i686_debug/kernel/arch/i686/isrs_gen.o
+ .debug_info    0x000062c6      0x338 build/i686_debug/kernel/arch/i686/vesa.o
+ .debug_info    0x000065fe      0x31c build/i686_debug/kernel/arch/i686/vga_text.o
+ .debug_info    0x0000691a       0x74 build/i686_debug/kernel/arch/i686/gdt_asm.o
+ .debug_info    0x0000698e       0x74 build/i686_debug/kernel/arch/i686/idt_asm.o
+ .debug_info    0x00006a02       0x73 build/i686_debug/kernel/arch/i686/io_asm.o
+ .debug_info    0x00006a75       0x74 build/i686_debug/kernel/arch/i686/isr_asm.o
+ .debug_info    0x00006ae9        0x0 build/i686_debug/kernel/crtn.o
 
-.debug_abbrev   0x00000000     0x23b7
+.debug_abbrev   0x00000000     0x23ba
  .debug_abbrev  0x00000000        0x0 build/i686_debug/kernel/crti.o
  .debug_abbrev  0x00000000       0xf4 build/i686_debug/kernel/debug.o
- .debug_abbrev  0x000000f4      0x1a1 build/i686_debug/kernel/main.o
- .debug_abbrev  0x00000295      0x16b build/i686_debug/kernel/memory.o
- .debug_abbrev  0x00000400      0x18c build/i686_debug/kernel/stdio.o
- .debug_abbrev  0x0000058c       0xe6 build/i686_debug/kernel/string.o
- .debug_abbrev  0x00000672      0x1d8 build/i686_debug/kernel/apps/nadit.o
- .debug_abbrev  0x0000084a      0x116 build/i686_debug/kernel/apps/pong.o
- .debug_abbrev  0x00000960      0x18c build/i686_debug/kernel/apps/shell.o
- .debug_abbrev  0x00000aec      0x16c build/i686_debug/kernel/apps/snake.o
- .debug_abbrev  0x00000c58       0x5f build/i686_debug/kernel/gui/font.o
- .debug_abbrev  0x00000cb7      0x184 build/i686_debug/kernel/gui/gui.o
- .debug_abbrev  0x00000e3b      0x2e5 build/i686_debug/kernel/gui/wm.o
- .debug_abbrev  0x00001120      0x137 build/i686_debug/kernel/drivers/ide.o
- .debug_abbrev  0x00001257      0x16e build/i686_debug/kernel/drivers/keyboard.o
- .debug_abbrev  0x000013c5      0x1bc build/i686_debug/kernel/drivers/mouse.o
- .debug_abbrev  0x00001581      0x170 build/i686_debug/kernel/fs/fs.o
- .debug_abbrev  0x000016f1       0x5a build/i686_debug/kernel/hal/hal.o
- .debug_abbrev  0x0000174b       0xb6 build/i686_debug/kernel/hal/vfs.o
- .debug_abbrev  0x00001801       0x82 build/i686_debug/kernel/arch/i686/e9.o
- .debug_abbrev  0x00001883       0xf0 build/i686_debug/kernel/arch/i686/gdt.o
- .debug_abbrev  0x00001973      0x1ba build/i686_debug/kernel/arch/i686/i8259.o
- .debug_abbrev  0x00001b2d      0x122 build/i686_debug/kernel/arch/i686/idt.o
- .debug_abbrev  0x00001c4f       0x6d build/i686_debug/kernel/arch/i686/io.o
- .debug_abbrev  0x00001cbc      0x1d4 build/i686_debug/kernel/arch/i686/irq.o
- .debug_abbrev  0x00001e90      0x16c build/i686_debug/kernel/arch/i686/isr.o
- .debug_abbrev  0x00001ffc       0xbf build/i686_debug/kernel/arch/i686/isrs_gen.o
- .debug_abbrev  0x000020bb      0x13c build/i686_debug/kernel/arch/i686/vesa.o
- .debug_abbrev  0x000021f7      0x14c build/i686_debug/kernel/arch/i686/vga_text.o
- .debug_abbrev  0x00002343       0x1d build/i686_debug/kernel/arch/i686/gdt_asm.o
- .debug_abbrev  0x00002360       0x1d build/i686_debug/kernel/arch/i686/idt_asm.o
- .debug_abbrev  0x0000237d       0x1d build/i686_debug/kernel/arch/i686/io_asm.o
- .debug_abbrev  0x0000239a       0x1d build/i686_debug/kernel/arch/i686/isr_asm.o
- .debug_abbrev  0x000023b7        0x0 build/i686_debug/kernel/crtn.o
+ .debug_abbrev  0x000000f4      0x1a4 build/i686_debug/kernel/main.o
+ .debug_abbrev  0x00000298      0x16b build/i686_debug/kernel/memory.o
+ .debug_abbrev  0x00000403      0x18c build/i686_debug/kernel/stdio.o
+ .debug_abbrev  0x0000058f       0xe6 build/i686_debug/kernel/string.o
+ .debug_abbrev  0x00000675      0x1d8 build/i686_debug/kernel/apps/nadit.o
+ .debug_abbrev  0x0000084d      0x116 build/i686_debug/kernel/apps/pong.o
+ .debug_abbrev  0x00000963      0x18c build/i686_debug/kernel/apps/shell.o
+ .debug_abbrev  0x00000aef      0x16c build/i686_debug/kernel/apps/snake.o
+ .debug_abbrev  0x00000c5b       0x5f build/i686_debug/kernel/gui/font.o
+ .debug_abbrev  0x00000cba      0x184 build/i686_debug/kernel/gui/gui.o
+ .debug_abbrev  0x00000e3e      0x2e5 build/i686_debug/kernel/gui/wm.o
+ .debug_abbrev  0x00001123      0x137 build/i686_debug/kernel/drivers/ide.o
+ .debug_abbrev  0x0000125a      0x16e build/i686_debug/kernel/drivers/keyboard.o
+ .debug_abbrev  0x000013c8      0x1bc build/i686_debug/kernel/drivers/mouse.o
+ .debug_abbrev  0x00001584      0x170 build/i686_debug/kernel/fs/fs.o
+ .debug_abbrev  0x000016f4       0x5a build/i686_debug/kernel/hal/hal.o
+ .debug_abbrev  0x0000174e       0xb6 build/i686_debug/kernel/hal/vfs.o
+ .debug_abbrev  0x00001804       0x82 build/i686_debug/kernel/arch/i686/e9.o
+ .debug_abbrev  0x00001886       0xf0 build/i686_debug/kernel/arch/i686/gdt.o
+ .debug_abbrev  0x00001976      0x1ba build/i686_debug/kernel/arch/i686/i8259.o
+ .debug_abbrev  0x00001b30      0x122 build/i686_debug/kernel/arch/i686/idt.o
+ .debug_abbrev  0x00001c52       0x6d build/i686_debug/kernel/arch/i686/io.o
+ .debug_abbrev  0x00001cbf      0x1d4 build/i686_debug/kernel/arch/i686/irq.o
+ .debug_abbrev  0x00001e93      0x16c build/i686_debug/kernel/arch/i686/isr.o
+ .debug_abbrev  0x00001fff       0xbf build/i686_debug/kernel/arch/i686/isrs_gen.o
+ .debug_abbrev  0x000020be      0x13c build/i686_debug/kernel/arch/i686/vesa.o
+ .debug_abbrev  0x000021fa      0x14c build/i686_debug/kernel/arch/i686/vga_text.o
+ .debug_abbrev  0x00002346       0x1d build/i686_debug/kernel/arch/i686/gdt_asm.o
+ .debug_abbrev  0x00002363       0x1d build/i686_debug/kernel/arch/i686/idt_asm.o
+ .debug_abbrev  0x00002380       0x1d build/i686_debug/kernel/arch/i686/io_asm.o
+ .debug_abbrev  0x0000239d       0x1d build/i686_debug/kernel/arch/i686/isr_asm.o
+ .debug_abbrev  0x000023ba        0x0 build/i686_debug/kernel/crtn.o
 
-.debug_line     0x00000000     0x4018
+.debug_line     0x00000000     0x401a
  .debug_line    0x00000000        0x0 build/i686_debug/kernel/crti.o
  .debug_line    0x00000000       0x7a build/i686_debug/kernel/debug.o
- .debug_line    0x0000007a      0x19e build/i686_debug/kernel/main.o
- .debug_line    0x00000218      0x203 build/i686_debug/kernel/memory.o
- .debug_line    0x0000041b      0x2ab build/i686_debug/kernel/stdio.o
- .debug_line    0x000006c6      0x1f9 build/i686_debug/kernel/string.o
- .debug_line    0x000008bf      0x528 build/i686_debug/kernel/apps/nadit.o
- .debug_line    0x00000de7      0x2f1 build/i686_debug/kernel/apps/pong.o
- .debug_line    0x000010d8      0x434 build/i686_debug/kernel/apps/shell.o
- .debug_line    0x0000150c      0x471 build/i686_debug/kernel/apps/snake.o
- .debug_line    0x0000197d       0x3f build/i686_debug/kernel/gui/font.o
- .debug_line    0x000019bc      0x2c8 build/i686_debug/kernel/gui/gui.o
- .debug_line    0x00001c84      0xc20 build/i686_debug/kernel/gui/wm.o
- .debug_line    0x000028a4      0x17d build/i686_debug/kernel/drivers/ide.o
- .debug_line    0x00002a21       0xed build/i686_debug/kernel/drivers/keyboard.o
- .debug_line    0x00002b0e      0x1fb build/i686_debug/kernel/drivers/mouse.o
- .debug_line    0x00002d09      0x20e build/i686_debug/kernel/fs/fs.o
- .debug_line    0x00002f17       0x88 build/i686_debug/kernel/hal/hal.o
- .debug_line    0x00002f9f       0xb0 build/i686_debug/kernel/hal/vfs.o
- .debug_line    0x0000304f       0x5e build/i686_debug/kernel/arch/i686/e9.o
- .debug_line    0x000030ad       0x5c build/i686_debug/kernel/arch/i686/gdt.o
- .debug_line    0x00003109      0x147 build/i686_debug/kernel/arch/i686/i8259.o
- .debug_line    0x00003250       0x89 build/i686_debug/kernel/arch/i686/idt.o
- .debug_line    0x000032d9       0x5e build/i686_debug/kernel/arch/i686/io.o
- .debug_line    0x00003337      0x130 build/i686_debug/kernel/arch/i686/irq.o
- .debug_line    0x00003467       0xdb build/i686_debug/kernel/arch/i686/isr.o
- .debug_line    0x00003542      0x25f build/i686_debug/kernel/arch/i686/isrs_gen.o
- .debug_line    0x000037a1      0x21a build/i686_debug/kernel/arch/i686/vesa.o
- .debug_line    0x000039bb      0x1d8 build/i686_debug/kernel/arch/i686/vga_text.o
- .debug_line    0x00003b93       0x5e build/i686_debug/kernel/arch/i686/gdt_asm.o
- .debug_line    0x00003bf1       0x54 build/i686_debug/kernel/arch/i686/idt_asm.o
- .debug_line    0x00003c45       0x64 build/i686_debug/kernel/arch/i686/io_asm.o
- .debug_line    0x00003ca9      0x36f build/i686_debug/kernel/arch/i686/isr_asm.o
- .debug_line    0x00004018        0x0 build/i686_debug/kernel/crtn.o
+ .debug_line    0x0000007a      0x1a0 build/i686_debug/kernel/main.o
+ .debug_line    0x0000021a      0x203 build/i686_debug/kernel/memory.o
+ .debug_line    0x0000041d      0x2ab build/i686_debug/kernel/stdio.o
+ .debug_line    0x000006c8      0x1f9 build/i686_debug/kernel/string.o
+ .debug_line    0x000008c1      0x528 build/i686_debug/kernel/apps/nadit.o
+ .debug_line    0x00000de9      0x2f1 build/i686_debug/kernel/apps/pong.o
+ .debug_line    0x000010da      0x434 build/i686_debug/kernel/apps/shell.o
+ .debug_line    0x0000150e      0x471 build/i686_debug/kernel/apps/snake.o
+ .debug_line    0x0000197f       0x3f build/i686_debug/kernel/gui/font.o
+ .debug_line    0x000019be      0x2c8 build/i686_debug/kernel/gui/gui.o
+ .debug_line    0x00001c86      0xc20 build/i686_debug/kernel/gui/wm.o
+ .debug_line    0x000028a6      0x17d build/i686_debug/kernel/drivers/ide.o
+ .debug_line    0x00002a23       0xed build/i686_debug/kernel/drivers/keyboard.o
+ .debug_line    0x00002b10      0x1fb build/i686_debug/kernel/drivers/mouse.o
+ .debug_line    0x00002d0b      0x20e build/i686_debug/kernel/fs/fs.o
+ .debug_line    0x00002f19       0x88 build/i686_debug/kernel/hal/hal.o
+ .debug_line    0x00002fa1       0xb0 build/i686_debug/kernel/hal/vfs.o
+ .debug_line    0x00003051       0x5e build/i686_debug/kernel/arch/i686/e9.o
+ .debug_line    0x000030af       0x5c build/i686_debug/kernel/arch/i686/gdt.o
+ .debug_line    0x0000310b      0x147 build/i686_debug/kernel/arch/i686/i8259.o
+ .debug_line    0x00003252       0x89 build/i686_debug/kernel/arch/i686/idt.o
+ .debug_line    0x000032db       0x5e build/i686_debug/kernel/arch/i686/io.o
+ .debug_line    0x00003339      0x130 build/i686_debug/kernel/arch/i686/irq.o
+ .debug_line    0x00003469       0xdb build/i686_debug/kernel/arch/i686/isr.o
+ .debug_line    0x00003544      0x25f build/i686_debug/kernel/arch/i686/isrs_gen.o
+ .debug_line    0x000037a3      0x21a build/i686_debug/kernel/arch/i686/vesa.o
+ .debug_line    0x000039bd      0x1d8 build/i686_debug/kernel/arch/i686/vga_text.o
+ .debug_line    0x00003b95       0x5e build/i686_debug/kernel/arch/i686/gdt_asm.o
+ .debug_line    0x00003bf3       0x54 build/i686_debug/kernel/arch/i686/idt_asm.o
+ .debug_line    0x00003c47       0x64 build/i686_debug/kernel/arch/i686/io_asm.o
+ .debug_line    0x00003cab      0x36f build/i686_debug/kernel/arch/i686/isr_asm.o
+ .debug_line    0x0000401a        0x0 build/i686_debug/kernel/crtn.o
 
 .debug_frame    0x00000000        0x0
  .debug_frame   0x00000000        0x0 build/i686_debug/kernel/crti.o

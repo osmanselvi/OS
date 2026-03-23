@@ -18,20 +18,21 @@
 
 extern void _init();
 
-uint8_t g_KernelStack[32768];
+uint8_t __attribute__((aligned(16))) g_KernelStack[32768];
 
 void kernel_main(BootParams* bootParams);
 
-void start(BootParams* bootParams)
+void __attribute__((naked)) start(BootParams* bootParams)
 {
     __asm__ volatile (
-        "movl %0, %%esp\n"
-        "movl %%esp, %%ebp\n"
-        "pushl %1\n"
-        "call kernel_main\n"
-        : : "g" (&g_KernelStack[32768]), "g" (bootParams) : "memory"
+        "movl 4(%%esp), %%eax\n"    // Load bootParams from old stack
+        "movl %0, %%esp\n"          // Switch to new kernel stack
+        "movl %%esp, %%ebp\n"       // Initialize frame pointer
+        "pushl %%eax\n"             // Push bootParams to new stack
+        "pushl $0\n"                // Dummy return address for call consistency
+        "jmp kernel_main\n"         // Jump to actual kernel entry
+        : : "g" (&g_KernelStack[32768]) : "eax", "memory"
     );
-    for(;;);
 }
 
 void kernel_main(BootParams* bootParams)
