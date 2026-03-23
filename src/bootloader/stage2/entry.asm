@@ -42,7 +42,14 @@ entry:
     ; 6 - setup segment registers
     mov ax, 0x10
     mov ds, ax
+    mov es, ax
+    mov fs, ax
+    mov gs, ax
     mov ss, ax
+
+    ; Setup a robust 32-bit stack (moved from 0xFFF0 to 0x90000)
+    mov esp, 0x90000
+    mov ebp, esp
    
     ; clear bss (uninitialized data)
     mov edi, __bss_start

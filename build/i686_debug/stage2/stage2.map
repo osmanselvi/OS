@@ -17,10 +17,10 @@ Bağlayıcı betiği ve bellek eşlemesi
                 0x00000500                        phys = 0x500
                 0x00000500                        . = phys
 
-.entry          0x00000500       0xe3
+.entry          0x00000500       0xf0
                 0x00000500                        __entry_start = .
  *(.entry)
- .entry         0x00000500       0xe3 build/i686_debug/stage2/entry.o
+ .entry         0x00000500       0xf0 build/i686_debug/stage2/entry.o
                 0x00000500                entry
 
 .text           0x000005f0     0x2e27
