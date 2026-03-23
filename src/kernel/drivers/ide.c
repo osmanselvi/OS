@@ -1,5 +1,6 @@
 #include "ide.h"
 #include <hal/hal.h>
+#include <arch/i686/io.h>
 #include <stdio.h>
 #include <debug.h>
 
