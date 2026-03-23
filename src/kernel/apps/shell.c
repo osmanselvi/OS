@@ -160,8 +160,8 @@ void Shell_Initialize() {
 }
 
 void Shell_Draw(int x, int y, int w, int h) {
-    // Background
-    GUI_FillRect(x, y, w, h, COL_BLACK);
+    // Background (Dark Blue for version check)
+    GUI_FillRect(x, y, w, h, 0x00000044);
     
     // Rows
     for (int r = 0; r < SHELL_ROWS; r++) {

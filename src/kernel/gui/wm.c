@@ -138,9 +138,9 @@ static void DrawDesktopBackground()
     // Solid background (Teal) is much faster than per-row gradients
     GUI_FillRect(0, TASKBAR_H, SCREEN_W, SCREEN_H - TASKBAR_H, 0x000088AA);
 
-    // Watermark bottom-right
-    GUI_DrawString(SCREEN_W - 136, SCREEN_H - 24, "SincanOs v2.0", COL_WHITE, 0x000088AA);
-    GUI_DrawString(SCREEN_W - 120, SCREEN_H - 8,  "New World", 0x00AADDFF, 0x000088AA);
+    // Watermark bottom-right (Version Verification)
+    GUI_DrawString(SCREEN_W - 160, SCREEN_H - 24, "SincanOs v2.0 - DEBUG P6", COL_WHITE, 0x000088AA);
+    GUI_DrawString(SCREEN_W - 120, SCREEN_H - 8,  "Persistence Mode", 0x00AADDFF, 0x000088AA);
 }
 
 static void DrawIcons()
