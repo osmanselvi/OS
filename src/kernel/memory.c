@@ -17,8 +17,8 @@ void Memory_Initialize()
     // Align heap start to 4KB boundary
     g_HeapStart = (void*)(((uint32_t)&__end + 0xFFF) & ~0xFFF);
     
-    // We'll give it a 4MB initial heap
-    size_t initial_heap_size = 4 * 1024 * 1024;
+    // We'll give it a 8MB initial heap
+    size_t initial_heap_size = 8 * 1024 * 1024;
     
     g_HeapHead = (mem_block_t*)g_HeapStart;
     g_HeapHead->size = initial_heap_size - sizeof(mem_block_t);

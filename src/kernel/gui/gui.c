@@ -13,6 +13,10 @@ void GUI_Initialize(uint32_t w, uint32_t h)
     g_W = w; g_H = h;
     if (g_BackBuffer) kfree(g_BackBuffer);
     g_BackBuffer = (uint32_t*)kmalloc(w * h * 4);
+    if (!g_BackBuffer) {
+        printf("GUI: Failed to allocate backbuffer!\n");
+        for(;;);
+    }
     memset(g_BackBuffer, 0, w * h * 4);
 }
 
@@ -67,7 +71,7 @@ void GUI_DrawLine(int x1, int y1, int x2, int y2, uint32_t color)
 
 void GUI_DrawChar(int x, int y, unsigned char c, uint32_t fg, uint32_t bg)
 {
-    if (!g_BackBuffer) return;
+    if (!g_BackBuffer || x < 0 || y < 0 || (uint32_t)x + FONT_W > g_W || (uint32_t)y + FONT_H > g_H) return;
     const unsigned char* glyph = g_Font8x16[c];
     for (int row = 0; row < FONT_H; row++) {
         unsigned char bits = glyph[row];
