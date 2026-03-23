@@ -6,6 +6,7 @@
 #include <arch/i686/vga_text.h>
 #include <drivers/keyboard.h>
 #include <drivers/mouse.h>
+#include <drivers/ide.h>
 
 void HAL_Initialize()
 {
@@ -17,4 +18,5 @@ void HAL_Initialize()
     
     Keyboard_Initialize();
     Mouse_Initialize();
+    IDE_Initialize();
 }

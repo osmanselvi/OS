@@ -84,10 +84,13 @@ void start(BootParams* bootParams)
             break;  // Kapat clicked
         } else if (gui_running == WM_SNAKE) {
             Snake_Run();
+            WM_DrawAll(); GUI_SwapBuffers(); // Restore Desktop after app
         } else if (gui_running == WM_PONG) {
             Pong_Run();
+            WM_DrawAll(); GUI_SwapBuffers();
         } else if (gui_running == WM_NADIT) {
             Nadit_Run("benioku.txt");
+            WM_DrawAll(); GUI_SwapBuffers();
         }
     }
 

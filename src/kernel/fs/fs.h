@@ -7,4 +7,6 @@ int  fs_create_file(const char *name);
 int  fs_find_file(const char *name);
 void fs_write_file(const char *name, const char *text);
 void fs_get_content(const char *name, char *buffer);
+int  fs_delete_file(const char *name);
+int  fs_rename_file(const char *old_name, const char *new_name);
 void get_file_list_string(char *buffer);

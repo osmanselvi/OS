@@ -90,22 +90,46 @@ static void Shell_ProcessCommand(const char* input) {
     to_upper(cmd_upper);
 
     if (strcmp(cmd_upper, "HELP") == 0) {
-        Shell_Print("Available commands: HELP, LS, TOUCH, READ, WRITE, TIME, CLEAR, EXIT\n");
+        Shell_Print("Available commands: HELP, LS, CAT, READ, WRITE, TOUCH, RM, RENAME, MKDIR, TIME, CLEAR, EXIT\n");
     } else if (strcmp(cmd_upper, "LS") == 0) {
         char buf[512];
         get_file_list_string(buf);
         Shell_Print(buf);
+    } else if (strcmp(cmd_upper, "CAT") == 0 || strcmp(cmd_upper, "READ") == 0) {
+        if (arg1) {
+            char buf[1024];
+            fs_get_content(arg1, buf);
+            if (buf[0] == '\0' && fs_find_file(arg1) == -1) Shell_Print("File not found.\n");
+            else { Shell_Print(buf); Shell_Print("\n"); }
+        } else Shell_Print("Usage: CAT <filename>\n");
     } else if (strcmp(cmd_upper, "TOUCH") == 0) {
         if (arg1) {
             if (fs_create_file(arg1) == -1) Shell_Print("Error: Could not create file.\n");
             else Shell_Print("File created.\n");
         } else Shell_Print("Usage: TOUCH <filename>\n");
+    } else if (strcmp(cmd_upper, "RM") == 0) {
+        if (arg1) {
+            if (fs_delete_file(arg1) == -1) Shell_Print("Error: File not found.\n");
+            else Shell_Print("File deleted.\n");
+        } else Shell_Print("Usage: RM <filename>\n");
     } else if (strcmp(cmd_upper, "WRITE") == 0) {
         if (arg1 && arg2) {
             fs_write_file(arg1, arg2);
             Shell_Print("Done.\n");
         } else Shell_Print("Usage: WRITE <filename> <text>\n");
+    } else if (strcmp(cmd_upper, "RENAME") == 0) {
+        if (arg1 && arg2) {
+            if (fs_rename_file(arg1, arg2) == -1) Shell_Print("Error: Rename failed. Ensure source exists and destination doesn't.\n");
+            else Shell_Print("Renamed.\n");
+        } else Shell_Print("Usage: RENAME <oldname> <newname>\n");
+    } else if (strcmp(cmd_upper, "MKDIR") == 0) {
+        if (arg1) {
+            Shell_Print("Directory creation simulated: ");
+            Shell_Print(arg1);
+            Shell_Print("\n");
+        } else Shell_Print("Usage: MKDIR <dirname>\n");
     } else if (strcmp(cmd_upper, "READ") == 0) {
+        // Redundant due to CAT/READ above, but keeping for safety if needed
         if (arg1) {
             char buf[1024];
             fs_get_content(arg1, buf);
