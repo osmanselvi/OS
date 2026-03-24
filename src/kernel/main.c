@@ -96,6 +96,10 @@ void kernel_main(BootParams* bootParams)
                 WM_DrawAll();
                 GUI_SwapBuffers();
             }
+
+            // Suspend CPU until next interrupt (Timer, Keyboard, Mouse)
+            // This prevents busy-waiting and stabilizes emulated IRQ handling.
+            __asm__ volatile ("hlt");
         }
 
         // ── Dispatch app ─────────────────────────────────────────────────────
