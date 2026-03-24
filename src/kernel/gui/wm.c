@@ -359,8 +359,8 @@ int WM_HandleMouse(int mx, int my, bool lbtn)
             // iy starts at smy+8, PROGRAMLAR header (+20), then:
             int iy = smy + 8 + 20;  // first item: Not Defteri
             if (my >= iy && my < iy+18) { g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_NADIT; } iy += 18;
-            if (my >= iy && my < iy+18) { WM_CreateWindow("Dosya Yoneticisi", 200, 120, 400, 300); g_StartMenuOpen=false; WM_DrawAll(); prev_lbtn=lbtn; return WM_CONTINUE; } iy += 18;
-            if (my >= iy && my < iy+18) { WM_CreateShellWindow("Komut Satiri", 150, 100, 640, 420); g_StartMenuOpen=false; WM_DrawAll(); prev_lbtn=lbtn; return WM_CONTINUE; } iy += 24; // +24 includes separator gap
+            if (my >= iy && my < iy+18) { WM_CreateWindow("Dosya Yoneticisi", 200, 120, 400, 300); g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_CONTINUE; } iy += 18;
+            if (my >= iy && my < iy+18) { WM_CreateShellWindow("Komut Satiri", 150, 100, 640, 420); g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_CONTINUE; } iy += 24; // +24 includes separator gap
             // OYUNLAR header (+20)
             iy += 20;
             if (my >= iy && my < iy+18) { g_StartMenuOpen=false; prev_lbtn=lbtn; return WM_SNAKE; } iy += 18;

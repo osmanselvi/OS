@@ -18,7 +18,7 @@
 
 extern void _init();
 
-uint8_t __attribute__((aligned(16))) g_KernelStack[32768];
+uint8_t __attribute__((aligned(16))) g_KernelStack[65536];
 
 void kernel_main(BootParams* bootParams);
 
@@ -27,11 +27,12 @@ void __attribute__((naked)) start(BootParams* bootParams)
     __asm__ volatile (
         "movl 4(%%esp), %%eax\n"    // Load bootParams from old stack
         "movl %0, %%esp\n"          // Switch to new kernel stack
+        "andl $-16, %%esp\n"        // Force 16-byte alignment
         "movl %%esp, %%ebp\n"       // Initialize frame pointer
         "pushl %%eax\n"             // Push bootParams to new stack
         "pushl $0\n"                // Dummy return address for call consistency
         "jmp kernel_main\n"         // Jump to actual kernel entry
-        : : "g" (&g_KernelStack[32768]) : "eax", "memory"
+        : : "g" (&g_KernelStack[65536]) : "eax", "memory"
     );
 }
 
@@ -73,8 +74,8 @@ void kernel_main(BootParams* bootParams)
         uint32_t loop_count = 0;
 
         while (gui_running == WM_CONTINUE) {
-            if (++loop_count % 100000000 == 0) {
-                log_debug("Main", "Heartbeat. Mouse IRQs: %d", Mouse_GetInterruptCount());
+            if (++loop_count % 1000000000 == 0) {
+                // Reduced heartbeat frequency
             }
             MouseState ms;
             Mouse_GetState(&ms);
@@ -89,7 +90,6 @@ void kernel_main(BootParams* bootParams)
                 prev_mx = mx; prev_my = my; prev_lbtn = lbtn;
             }
 
-            char key = Keyboard_GetLastChar();
             if (key) {
                 gui_running = WM_HandleKey(key);
                 WM_DrawAll();
