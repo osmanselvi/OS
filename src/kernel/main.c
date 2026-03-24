@@ -90,6 +90,7 @@ void kernel_main(BootParams* bootParams)
                 prev_mx = mx; prev_my = my; prev_lbtn = lbtn;
             }
 
+            char key = Keyboard_GetLastChar();
             if (key) {
                 gui_running = WM_HandleKey(key);
                 WM_DrawAll();
